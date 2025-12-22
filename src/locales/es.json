@@ -1,0 +1,114 @@
+{
+    "common": {
+        "loading": "Cargando...",
+        "error": "Ocurrió un error",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "search": "Buscar",
+        "back": "Atrás",
+        "next": "Siguiente",
+        "done": "Hecho",
+        "ok": "OK",
+        "yes": "Sí",
+        "no": "No",
+        "close": "Cerrar",
+        "apply": "Aplicar",
+        "reset": "Restablecer",
+        "seeAll": "Ver todo",
+        "noResults": "No se encontraron resultados",
+        "success": "Éxito"
+    },
+    "navigation": {
+        "home": "Inicio",
+        "market": "Mercado",
+        "sell": "Vender",
+        "activity": "Actividad",
+        "profile": "Perfil"
+    },
+    "home": {
+        "happeningNow": "Sucediendo ahora",
+        "recommended": "Recomendado para ti",
+        "searchPlaceholder": "Buscar transmisiones, vendedores...",
+        "noStreams": "No hay transmisiones en vivo en esta categoría",
+        "categories": {
+            "forYou": "Para ti"
+        }
+    },
+    "market": {
+        "title": "Mercado",
+        "searchPlaceholder": "Buscar productos...",
+        "categories": "Categorías",
+        "filters": "Filtros",
+        "sort": "Ordenar",
+        "results": "resultados",
+        "sortOptions": {
+            "newest": "Más recientes",
+            "priceLow": "Precio: Bajo a Alto",
+            "priceHigh": "Precio: Alto a Bajo",
+            "popular": "Más populares"
+        },
+        "noProducts": "No se encontraron productos",
+        "adjustFilters": "Intenta ajustar tus filtros"
+    },
+    "live": {
+        "viewers": "espectadores",
+        "chatPlaceholder": "Di algo...",
+        "send": "Enviar",
+        "bid": "Pujar",
+        "auctionEnding": "Subasta terminando pronto",
+        "sold": "Vendido",
+        "currentBid": "Puja actual",
+        "startingBid": "Empieza en"
+    },
+    "profile": {
+        "settings": "Ajustes",
+        "editProfile": "Editar perfil",
+        "followers": "Seguidores",
+        "following": "Siguiendo",
+        "streams": "Transmisiones",
+        "reviews": "Reseñas",
+        "sold": "Vendido",
+        "bought": "Comprado"
+    },
+    "settings": {
+        "title": "Ajustes",
+        "account": "CUENTA",
+        "notifications": "NOTIFICACIONES",
+        "privacy": "PRIVACIDAD Y SEGURIDAD",
+        "support": "SOPORTE",
+        "legal": "LEGAL",
+        "language": "Idioma",
+        "paymentMethods": "Métodos de pago",
+        "shippingAddresses": "Direcciones de envío",
+        "pushNotifications": "Notificaciones push",
+        "emailNotifications": "Notificaciones por correo",
+        "bidAlerts": "Alertas de puja",
+        "changePassword": "Cambiar contraseña",
+        "contactUs": "Contáctanos",
+        "faq": "Preguntas frecuentes",
+        "terms": "Términos y condiciones",
+        "privacyPolicy": "Política de privacidad",
+        "logout": "Cerrar sesión",
+        "version": "Versión"
+    },
+    "auth": {
+        "login": "Iniciar sesión",
+        "signup": "Registrarse",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "noAccount": "¿No tienes una cuenta?",
+        "hasAccount": "¿Ya tienes una cuenta?",
+        "fullName": "Nombre completo",
+        "username": "Nombre de usuario"
+    },
+    "languages": {
+        "en": "Inglés",
+        "es": "Español",
+        "fr": "Francés",
+        "de": "Alemán",
+        "ja": "Japonés"
+    }
+}

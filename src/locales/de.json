@@ -1,0 +1,106 @@
+{
+    "common": {
+        "loading": "Laden...",
+        "error": "Ein Fehler ist aufgetreten",
+        "save": "Speichern",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "edit": "Bearbeiten",
+        "search": "Suchen",
+        "back": "Zurück",
+        "next": "Weiter",
+        "done": "Fertig",
+        "ok": "OK",
+        "yes": "Ja",
+        "no": "Nein",
+        "close": "Schließen",
+        "apply": "Anwenden",
+        "reset": "Zurücksetzen",
+        "seeAll": "Alle sehen",
+        "noResults": "Keine Ergebnisse gefunden",
+        "success": "Erfolg"
+    },
+    "navigation": {
+        "home": "Startseite",
+        "market": "Markt",
+        "sell": "Verkaufen",
+        "activity": "Aktivität",
+        "profile": "Profil"
+    },
+    "home": {
+        "happeningNow": "Jetzt live",
+        "recommended": "Für dich empfohlen",
+        "searchPlaceholder": "Suche Streams, Verkäufer...",
+        "noStreams": "Keine Live-Streams in dieser Kategorie",
+        "categories": {
+            "forYou": "Für dich"
+        }
+    },
+    "market": {
+        "title": "Marktplatz",
+        "searchPlaceholder": "Produkte suchen...",
+        "categories": "Kategorien",
+        "filters": "Filter",
+        "sort": "Sortieren",
+        "results": "Ergebnisse"
+    },
+    "live": {
+        "viewers": "Zuschauer",
+        "chatPlaceholder": "Sag etwas...",
+        "send": "Senden",
+        "bid": "Bieten",
+        "auctionEnding": "Auktion endet bald",
+        "sold": "Verkauft",
+        "currentBid": "Aktuelles Gebot",
+        "startingBid": "Startet bei"
+    },
+    "profile": {
+        "settings": "Einstellungen",
+        "editProfile": "Profil bearbeiten",
+        "followers": "Follower",
+        "following": "Folgt",
+        "streams": "Streams",
+        "reviews": "Bewertungen",
+        "sold": "Verkauft",
+        "bought": "Gekauft"
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "account": "KONTO",
+        "notifications": "BENACHRICHTIGUNGEN",
+        "privacy": "DATENSCHUTZ & SICHERHEIT",
+        "support": "SUPPORT",
+        "legal": "RECHTLICHES",
+        "language": "Sprache",
+        "paymentMethods": "Zahlungsmethoden",
+        "shippingAddresses": "Lieferadressen",
+        "pushNotifications": "Push-Benachrichtigungen",
+        "emailNotifications": "E-Mail-Benachrichtigungen",
+        "bidAlerts": "Gebotsbenachrichtigungen",
+        "changePassword": "Passwort ändern",
+        "contactUs": "Kontaktieren Sie uns",
+        "faq": "FAQ",
+        "terms": "Allgemeine Geschäftsbedingungen",
+        "privacyPolicy": "Datenschutzerklärung",
+        "logout": "Abmelden",
+        "version": "Version"
+    },
+    "auth": {
+        "login": "Anmelden",
+        "signup": "Registrieren",
+        "email": "E-Mail",
+        "password": "Passwort",
+        "forgotPassword": "Passwort vergessen?",
+        "noAccount": "Kein Konto?",
+        "hasAccount": "Haben Sie bereits ein Konto?",
+        "fullName": "Vollständiger Name",
+        "username": "Benutzername"
+    },
+    "languages": {
+        "en": "Englisch",
+        "es": "Spanisch",
+        "fr": "Französisch",
+        "de": "Deutsch",
+        "ja": "Japanisch"
+    }
+}

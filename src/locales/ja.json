@@ -1,0 +1,106 @@
+{
+    "common": {
+        "loading": "読み込み中...",
+        "error": "エラーが発生しました",
+        "save": "保存",
+        "cancel": "キャンセル",
+        "delete": "削除",
+        "edit": "編集",
+        "search": "検索",
+        "back": "戻る",
+        "next": "次へ",
+        "done": "完了",
+        "ok": "OK",
+        "yes": "はい",
+        "no": "いいえ",
+        "close": "閉じる",
+        "apply": "適用",
+        "reset": "リセット",
+        "seeAll": "すべて表示",
+        "noResults": "結果が見つかりません",
+        "success": "成功"
+    },
+    "navigation": {
+        "home": "ホーム",
+        "market": "マーケット",
+        "sell": "出品",
+        "activity": "アクティビティ",
+        "profile": "プロフィール"
+    },
+    "home": {
+        "happeningNow": "開催中",
+        "recommended": "おすすめ",
+        "searchPlaceholder": "配信、出品者を検索...",
+        "noStreams": "このカテゴリーのライブ配信はありません",
+        "categories": {
+            "forYou": "おすすめ"
+        }
+    },
+    "market": {
+        "title": "マーケットプレイス",
+        "searchPlaceholder": "商品を検索...",
+        "categories": "カテゴリー",
+        "filters": "フィルター",
+        "sort": "並び替え",
+        "results": "件の結果"
+    },
+    "live": {
+        "viewers": "人視聴中",
+        "chatPlaceholder": "コメントする...",
+        "send": "送信",
+        "bid": "入札",
+        "auctionEnding": "まもなく終了",
+        "sold": "売り切れ",
+        "currentBid": "現在の入札額",
+        "startingBid": "開始価格"
+    },
+    "profile": {
+        "settings": "設定",
+        "editProfile": "プロフィール編集",
+        "followers": "フォロワー",
+        "following": "フォロー中",
+        "streams": "配信",
+        "reviews": "レビュー",
+        "sold": "販売済み",
+        "bought": "購入済み"
+    },
+    "settings": {
+        "title": "設定",
+        "account": "アカウント",
+        "notifications": "通知",
+        "privacy": "プライバシーとセキュリティ",
+        "support": "サポート",
+        "legal": "規約",
+        "language": "言語",
+        "paymentMethods": "支払い方法",
+        "shippingAddresses": "配送先住所",
+        "pushNotifications": "プッシュ通知",
+        "emailNotifications": "メール通知",
+        "bidAlerts": "入札アラート",
+        "changePassword": "パスワード変更",
+        "contactUs": "お問い合わせ",
+        "faq": "よくある質問",
+        "terms": "利用規約",
+        "privacyPolicy": "プライバシーポリシー",
+        "logout": "ログアウト",
+        "version": "バージョン"
+    },
+    "auth": {
+        "login": "ログイン",
+        "signup": "登録",
+        "email": "メールアドレス",
+        "password": "パスワード",
+        "forgotPassword": "パスワードをお忘れですか？",
+        "noAccount": "アカウントをお持ちでないですか？",
+        "hasAccount": "すでにアカウントをお持ちですか？",
+        "fullName": "氏名",
+        "username": "ユーザー名"
+    },
+    "languages": {
+        "en": "英語",
+        "es": "スペイン語",
+        "fr": "フランス語",
+        "de": "ドイツ語",
+        "ja": "日本語"
+    }
+}

@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.whatnotclone.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -21,10 +22,33 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.whatnotclone.app"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "name": "WhatNot Clone",
+      "shortName": "WhatNot",
+      "display": "standalone",
+      "backgroundColor": "#ffffff",
+      "themeColor": "#000000",
+      "description": "Live Shopping Marketplace",
+      "orientation": "portrait",
+      "startUrl": "/",
+      "meta": {
+        "apple-mobile-web-app-capable": "yes",
+        "mobile-web-app-capable": "yes"
+      }
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "privacyManifestAggregationEnabled": false
+          }
+        }
+      ]
+    ]
   }
 }
