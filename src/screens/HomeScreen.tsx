@@ -81,7 +81,7 @@ export const HomeScreen = () => {
                         <View style={styles.sectionTitleContainer}>
                             <Text style={styles.sectionTitle}>Live Shopping</Text>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('LiveStream', { streamId: '1' })}>
+                        <TouchableOpacity onPress={() => navigation.navigate('LiveShoppingList')}>
                             <Text style={styles.viewAllText}>View All</Text>
                         </TouchableOpacity>
                     </View>
@@ -102,7 +102,7 @@ export const HomeScreen = () => {
                         <View style={styles.sectionTitleContainer}>
                             <Text style={styles.sectionTitle}>Top Sellers</Text>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('TopSellersList')}>
                             <Text style={styles.viewAllText}>View All</Text>
                         </TouchableOpacity>
                     </View>
@@ -123,7 +123,7 @@ export const HomeScreen = () => {
                         <View style={styles.sectionTitleContainer}>
                             <Text style={styles.sectionTitle}>Future Shopping</Text>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('FutureShoppingList')}>
                             <Text style={styles.viewAllText}>Calendar</Text>
                         </TouchableOpacity>
                     </View>
@@ -143,7 +143,7 @@ export const HomeScreen = () => {
                         <View style={styles.sectionTitleContainer}>
                             <Text style={styles.sectionTitle}>Recommend Auctions</Text>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('AuctionsList')}>
                             <Text style={styles.viewAllText}>View All</Text>
                         </TouchableOpacity>
                     </View>

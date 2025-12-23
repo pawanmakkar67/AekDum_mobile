@@ -50,7 +50,7 @@ export const SignupScreen = () => {
                 <View style={styles.contentContainer}>
                     {/* Logo / Header Image Placeholder */}
                     <View style={styles.logoContainer}>
-                        <AekdumLogo width={300} height={200} />
+                        <AekdumLogo width={300} height={120} />
                     </View>
 
                     <Text style={styles.title}>
@@ -144,7 +144,8 @@ export const SignupScreen = () => {
                         <View style={styles.footerContainer}>
                             {!otpSent ? (
                                 <Text style={styles.footerText}>
-                                    Don't have an account? <Text style={styles.linkText} onPress={() => { }}>Sign Up</Text>
+                                    Have an account? <Text style={styles.linkText} onPress={() => navigation.navigate('Login')}
+                                    >Log In</Text>
                                     {/* Link to Login? The user flow is confused here. 
                                         If we are ON SignupScreen, this should link to Login. 
                                         But text says "Don't have an account? Sign Up". 

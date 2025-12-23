@@ -12,13 +12,14 @@ interface AuctionCardProps {
     };
     onPress?: () => void;
     onBidPress?: () => void;
+    style?: any;
 }
 
-export const AuctionCard = ({ product, onPress, onBidPress }: AuctionCardProps) => {
+export const AuctionCard = ({ product, onPress, onBidPress, style }: AuctionCardProps) => {
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={styles.container}
+            style={[styles.container, style]}
         >
             <View style={styles.imageContainer}>
                 <Image

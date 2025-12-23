@@ -84,7 +84,7 @@ export const TabNavigator = () => {
                 name="Home"
                 component={HomeScreen}
                 options={{
-                    tabBarIcon: ({ color, size, focused }) => <HomeIcon color={color} size={size} focused={focused} />,
+                    tabBarIcon: ({ color, focused }) => <HomeIcon color={color} size={24} focused={focused} />,
                     tabBarLabel: t('navigation.home')
                 }}
             />
@@ -92,7 +92,7 @@ export const TabNavigator = () => {
                 name="Marketplace"
                 component={MarketplaceScreen}
                 options={{
-                    tabBarIcon: ({ color, size, focused }) => <CategoriesIcon color={color} size={size} focused={focused} />,
+                    tabBarIcon: ({ color, focused }) => <CategoriesIcon color={color} size={24} focused={focused} />,
                     tabBarLabel: t('navigation.categories')
                 }}
             />
@@ -100,7 +100,7 @@ export const TabNavigator = () => {
                 name="Favourite"
                 component={FavouriteScreen}
                 options={{
-                    tabBarIcon: ({ color, size, focused }) => <FavouriteIcon color={color} size={size} focused={focused} />,
+                    tabBarIcon: ({ color, focused }) => <FavouriteIcon color={color} size={24} focused={focused} />,
                     tabBarLabel: t('navigation.favourite')
                 }}
             />
@@ -108,7 +108,7 @@ export const TabNavigator = () => {
                 name="Activity"
                 component={ActivityScreen}
                 options={{
-                    tabBarIcon: ({ color, size, focused }) => <ActivityTabIconWithBadge color={color} size={size} focused={focused} />,
+                    tabBarIcon: ({ color, focused }) => <ActivityTabIconWithBadge color={color} size={24} focused={focused} />,
                     tabBarLabel: t('navigation.activity')
                 }}
             />
@@ -116,7 +116,7 @@ export const TabNavigator = () => {
                 name="Rewards"
                 component={RewardsScreen}
                 options={{
-                    tabBarIcon: ({ color, size, focused }) => <RewardsIcon color={color} size={size} focused={focused} />,
+                    tabBarIcon: ({ color, focused }) => <RewardsIcon color={color} size={24} focused={focused} />,
                     tabBarLabel: t('navigation.rewards')
                 }}
             />

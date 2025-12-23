@@ -2,6 +2,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
     Main: NavigatorScreenParams<MainTabParamList>;
+    Splash: undefined;
     Welcome: undefined;
     LiveStream: { streamId: string };
     ProductDetail: { productId: string };
@@ -21,6 +22,10 @@ export type RootStackParamList = {
     Broadcast: undefined;
     SupportChat: undefined;
     Profile: undefined;
+    LiveShoppingList: undefined;
+    TopSellersList: undefined;
+    AuctionsList: undefined;
+    FutureShoppingList: undefined;
 };
 
 export type MainTabParamList = {

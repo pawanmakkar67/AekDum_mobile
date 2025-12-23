@@ -8,11 +8,12 @@ interface TopSellerCardProps {
         image: string;
     };
     onPress?: () => void;
+    style?: any;
 }
 
-export const TopSellerCard = ({ seller, onPress }: TopSellerCardProps) => {
+export const TopSellerCard = ({ seller, onPress, style }: TopSellerCardProps) => {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.container}>
+        <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
             <View style={styles.imageContainer}>
                 <Image
                     source={{ uri: seller.image }}

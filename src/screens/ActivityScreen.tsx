@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ticket, Video, Clock, ChevronUp, Check, Play } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LiveBadge } from '../components/LiveBadge';
+import { Header } from '../components/Header';
+import { useTranslation } from '../hooks/useTranslation';
 
 const MOCK_ACTIVITY = [
     {
@@ -71,6 +74,9 @@ const MOCK_ACTIVITY = [
 const FILTER_TABS = ['All', 'Buying', 'Selling', 'Live Bids'];
 
 export const ActivityScreen = () => {
+    const navigation = useNavigation<any>();
+    const { t } = useTranslation();
+    const [searchQuery, setSearchQuery] = useState('');
     const [selectedFilter, setSelectedFilter] = useState('All');
 
     const renderCard = (item: any) => {
@@ -213,9 +219,16 @@ export const ActivityScreen = () => {
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
             {/* Header */}
+            <Header
+                searchValue={searchQuery}
+                onSearchChange={setSearchQuery}
+                placeholder={t('home.searchPlaceholder')}
+                onProfilePress={() => navigation.navigate('Profile')}
+            />
+            {/* Header Title Section */}
             <View style={styles.header}>
                 <Ticket size={24} color="#374151" />
-                <Text style={styles.headerTitle}>Activity</Text>
+                <Text style={styles.headerTitle}>{t('navigation.activity')}</Text>
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>

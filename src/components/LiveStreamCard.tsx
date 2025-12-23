@@ -15,11 +15,12 @@ interface LiveStreamCardProps {
         category: string;
     };
     onPress: () => void;
+    style?: any;
 }
 
-export const LiveStreamCard = ({ stream, onPress }: LiveStreamCardProps) => {
+export const LiveStreamCard = ({ stream, onPress, style }: LiveStreamCardProps) => {
     return (
-        <TouchableOpacity onPress={onPress} style={styles.container} activeOpacity={0.9}>
+        <TouchableOpacity onPress={onPress} style={[styles.container, style]} activeOpacity={0.9}>
             <View style={styles.card}>
                 <ImageBackground
                     source={{ uri: stream.image }}

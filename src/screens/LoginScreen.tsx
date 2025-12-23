@@ -30,7 +30,7 @@ export const LoginScreen = () => {
                 {/* Logo */}
                 <View style={styles.logoContainer}>
                     {/* <Logo /> */}
-                    <AekdumLogo width={300} height={200} />
+                    <AekdumLogo width={300} height={120} />
                 </View>
 
                 {/* Title */}

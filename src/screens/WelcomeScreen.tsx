@@ -39,7 +39,7 @@ export const WelcomeScreen = () => {
 
                 {/* Logo Area */}
                 <View style={styles.logoContainer}>
-                    <AekdumLogo width={300} height={200} />
+                    <AekdumLogo width={300} height={120} />
                 </View>
 
                 {/* Welcoming Text */}

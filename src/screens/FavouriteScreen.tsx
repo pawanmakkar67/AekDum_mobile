@@ -8,6 +8,7 @@ import { Search, Mic, SlidersHorizontal, MoreHorizontal, Globe, MessageCircle, B
 import { RootStackParamList } from '../types/navigation';
 import { useNotifications } from '../context/NotificationContext';
 import { LiveBadge } from '../components/LiveBadge';
+import { Header } from '../components/Header';
 
 export const FavouriteScreen = () => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -103,9 +104,15 @@ export const FavouriteScreen = () => {
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
             {/* Header with Search */}
+            <Header
+                searchValue={searchQuery}
+                onSearchChange={setSearchQuery}
+                placeholder={t('home.searchPlaceholder')}
+                onProfilePress={() => navigation.navigate('Profile')}
+            />
             <View style={styles.headerContainer}>
                 <View style={styles.headerRow}>
-                    <View style={[styles.searchBar, isSearchFocused && styles.searchBarFocused]}>
+                    {/* <View style={[styles.searchBar, isSearchFocused && styles.searchBarFocused]}>
                         <Search size={20} color="gray" />
                         <TextInput
                             style={styles.searchInput}
@@ -129,7 +136,7 @@ export const FavouriteScreen = () => {
                                 <Mic size={20} color="gray" />
                             </TouchableOpacity>
                         )}
-                    </View>
+                    </View> */}
 
                     {/* {!isSearchFocused && (
                         <TouchableOpacity style={styles.filterButton}>
