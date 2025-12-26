@@ -79,10 +79,10 @@ export const HomeScreen = () => {
                 <View style={styles.sectionHeaderContainer}>
                     <View style={styles.sectionHeader}>
                         <View style={styles.sectionTitleContainer}>
-                            <Text style={styles.sectionTitle}>Live Shopping</Text>
+                            <Text style={styles.sectionTitle}>{t('profile.liveShopping')}</Text>
                         </View>
                         <TouchableOpacity onPress={() => navigation.navigate('LiveShoppingList')}>
-                            <Text style={styles.viewAllText}>View All</Text>
+                            <Text style={styles.viewAllText}>{t('profile.viewAll')}</Text>
                         </TouchableOpacity>
                     </View>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScrollContent}>
@@ -100,10 +100,10 @@ export const HomeScreen = () => {
                 <View style={styles.sectionContainer}>
                     <View style={styles.sectionHeader}>
                         <View style={styles.sectionTitleContainer}>
-                            <Text style={styles.sectionTitle}>Top Sellers</Text>
+                            <Text style={styles.sectionTitle}>{t('profile.topSellers')}</Text>
                         </View>
                         <TouchableOpacity onPress={() => navigation.navigate('TopSellersList')}>
-                            <Text style={styles.viewAllText}>View All</Text>
+                            <Text style={styles.viewAllText}>{t('profile.viewAll')}</Text>
                         </TouchableOpacity>
                     </View>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalScrollContent}>
@@ -121,10 +121,10 @@ export const HomeScreen = () => {
                 <View style={[styles.sectionContainer, styles.paddingHorizontal]}>
                     <View style={styles.sectionHeader}>
                         <View style={styles.sectionTitleContainer}>
-                            <Text style={styles.sectionTitle}>Future Shopping</Text>
+                            <Text style={styles.sectionTitle}>{t('profile.futureShopping')}</Text>
                         </View>
                         <TouchableOpacity onPress={() => navigation.navigate('FutureShoppingList')}>
-                            <Text style={styles.viewAllText}>Calendar</Text>
+                            <Text style={styles.viewAllText}>{t('profile.calendar')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
@@ -141,10 +141,10 @@ export const HomeScreen = () => {
                 <View style={[styles.sectionContainer, styles.paddingHorizontal]}>
                     <View style={styles.sectionHeader}>
                         <View style={styles.sectionTitleContainer}>
-                            <Text style={styles.sectionTitle}>Recommend Auctions</Text>
+                            <Text style={styles.sectionTitle}>{t('profile.recommendAuctions')}</Text>
                         </View>
                         <TouchableOpacity onPress={() => navigation.navigate('AuctionsList')}>
-                            <Text style={styles.viewAllText}>View All</Text>
+                            <Text style={styles.viewAllText}>{t('profile.viewAll')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.gridContainer}>

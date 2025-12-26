@@ -167,7 +167,7 @@ class BiddingService {
     /**
      * Initialize auction for a product (mock mode)
      */
-    initializeAuction(productId: string, initialBid: number, buyNowPrice?: number): BidData {
+    initializeAuction(productId: string, initialBid: number, buyNowPrice?: number, duration: number = 60): BidData {
         return {
             productId,
             currentBid: initialBid,
@@ -175,7 +175,7 @@ class BiddingService {
             totalBids: 0,
             bidIncrement: 10,
             buyNowPrice,
-            timeLeft: 300, // 5 minutes
+            timeLeft: duration,
             isActive: true,
             bidHistory: [],
         };

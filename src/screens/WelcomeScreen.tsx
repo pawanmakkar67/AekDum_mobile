@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, Dimensions, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from '../hooks/useTranslation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 import { StatusBar } from 'expo-status-bar';
@@ -14,6 +15,7 @@ const { width } = Dimensions.get('window');
 
 export const WelcomeScreen = () => {
     const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const { t } = useTranslation();
 
     return (
         <View style={styles.container}>
@@ -44,17 +46,16 @@ export const WelcomeScreen = () => {
 
                 {/* Welcoming Text */}
                 <View style={styles.textContainer}>
-                    <Text style={styles.headingText}>Namaste,</Text>
+                    <Text style={styles.headingText}>{t('auth.namaste')}</Text>
                     <View style={styles.subHeadingRow}>
-                        <Text style={styles.headingText}>Welcome to </Text>
+                        <Text style={styles.headingText}>{t('auth.welcomeTo')}</Text>
                         <Text style={[styles.headingText, styles.brandText]}>AekDum</Text>
                     </View>
                 </View>
 
                 {/* Subtitle */}
                 <Text style={styles.subtitle}>
-                    India's #live shopping destination.{'\n'}
-                    Bid, buy, and win starting at ₹1.
+                    {t('auth.welcomeSubtitle')}
                 </Text>
 
                 {/* Action Buttons */}
@@ -62,19 +63,19 @@ export const WelcomeScreen = () => {
                     <AuthButton
                         variant="apple"
                         fullWidth
-                        label="Continue with Apple"
+                        label={t('auth.continueWithApple')}
                         onPress={() => console.log('Continue with Apple')}
                     />
                     <AuthButton
                         variant="google"
                         fullWidth
-                        label="Continue with Google"
+                        label={t('auth.continueWithGoogle')}
                         onPress={() => console.log('Continue with Google')}
                     />
                     <AuthButton
                         variant="phone"
                         fullWidth
-                        label="Use Phone"
+                        label={t('auth.usePhone')}
                         onPress={() => navigation.navigate('Login')}
                     />
                 </View>
@@ -85,13 +86,13 @@ export const WelcomeScreen = () => {
                     style={styles.loginFooter}
                 >
                     <Text style={styles.loginText}>
-                        Already have an account? <Text style={[styles.loginText, styles.brandTextBold]}>Log In</Text>
+                        {t('auth.haveAccount')}<Text style={[styles.loginText, styles.brandTextBold]}>{t('auth.login')}</Text>
                     </Text>
                 </TouchableOpacity>
 
                 {/* Terms Footer */}
                 <Text style={styles.termsText}>
-                    By continuing, you agree to Aekdum's Terms and Privacy. Policy
+                    {t('auth.terms')}
                 </Text>
 
             </View>

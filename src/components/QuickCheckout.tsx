@@ -76,7 +76,7 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
                 <View style={styles.container}>
                     {/* Header */}
                     <View style={styles.header}>
-                        <Text style={styles.headerTitle}>Quick Checkout</Text>
+                        <Text style={styles.headerTitle}>{t('live.quickCheckout.title')}</Text>
                         <TouchableOpacity onPress={onClose} style={styles.closeButton}>
                             <X color="#000" size={24} />
                         </TouchableOpacity>
@@ -104,7 +104,7 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
                                         <Text style={styles.dealPrice}>{t('common.currency')}{finalPrice}</Text>
                                         <View style={styles.savingsBadge}>
                                             <Text style={styles.savingsText}>
-                                                Save {product.flashDeal!.discountPercentage}%
+                                                {t('live.quickCheckout.save', { percent: product.flashDeal!.discountPercentage })}
                                             </Text>
                                         </View>
                                     </>
@@ -117,10 +117,10 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
                             {/* Inventory */}
                             <View style={styles.inventoryRow}>
                                 <Text style={styles.inventoryText}>
-                                    {product.inventory.available} in stock
+                                    {product.inventory.available} {t('live.quickCheckout.inStock')}
                                 </Text>
                                 {product.inventory.available < 10 && (
-                                    <Text style={styles.lowStockText}>⚠️ Low stock!</Text>
+                                    <Text style={styles.lowStockText}>{t('live.quickCheckout.lowStock')}</Text>
                                 )}
                             </View>
                         </View>
@@ -130,7 +130,7 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
                     {isFlashDeal && product.flashDeal && (
                         <View style={styles.dealAlert}>
                             <Text style={styles.dealAlertText}>
-                                🔥 Flash deal ends soon! Limited quantity available.
+                                {t('live.quickCheckout.flashDeal')}
                             </Text>
                         </View>
                     )}
@@ -147,7 +147,7 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
                             ) : (
                                 <>
                                     <ShoppingBag color="#8B5CF6" size={20} />
-                                    <Text style={styles.addToCartText}>Add to Cart</Text>
+                                    <Text style={styles.addToCartText}>{t('live.quickCheckout.addToCart')}</Text>
                                 </>
                             )}
                         </TouchableOpacity>
@@ -162,7 +162,7 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
                             ) : (
                                 <>
                                     <CreditCard color="#fff" size={20} />
-                                    <Text style={styles.buyNowText}>Buy Now</Text>
+                                    <Text style={styles.buyNowText}>{t('live.quickCheckout.buyNow')}</Text>
                                 </>
                             )}
                         </TouchableOpacity>
@@ -172,7 +172,10 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
                     {cart && cart.totalQuantity > 0 && (
                         <View style={styles.cartSummary}>
                             <Text style={styles.cartText}>
-                                {cart.totalQuantity} item{cart.totalQuantity > 1 ? 's' : ''} in cart
+                                {cart.totalQuantity === 1
+                                    ? t('live.quickCheckout.cartItem', { count: cart.totalQuantity })
+                                    : t('live.quickCheckout.cartItems', { count: cart.totalQuantity })
+                                }
                             </Text>
                             <Text style={styles.cartTotal}>
                                 {t('common.currency')}{cart.cost.totalAmount.amount}
@@ -182,9 +185,9 @@ export function QuickCheckout({ visible, product, onClose, streamId }: QuickChec
 
                     {/* Trust Badges */}
                     <View style={styles.trustBadges}>
-                        <Text style={styles.trustText}>🔒 Secure checkout</Text>
-                        <Text style={styles.trustText}>📦 Free shipping over {t('common.currency')}50</Text>
-                        <Text style={styles.trustText}>↩️ Easy returns</Text>
+                        <Text style={styles.trustText}>{t('live.quickCheckout.secureCheckout')}</Text>
+                        <Text style={styles.trustText}>{t('live.quickCheckout.freeShipping')} {t('common.currency')}50</Text>
+                        <Text style={styles.trustText}>{t('live.quickCheckout.easyReturns')}</Text>
                     </View>
                 </View>
             </View>

@@ -16,7 +16,10 @@ export interface AuctionConfig {
     isBulk: boolean;
 }
 
+import { useTranslation } from '../hooks/useTranslation';
+
 export const SellerControlsModal: React.FC<SellerControlsModalProps> = ({ visible, onClose, onStartAuction }) => {
+    const { t } = useTranslation();
     const [quantity, setQuantity] = useState('1');
     const [startPrice, setStartPrice] = useState('100');
     const [duration, setDuration] = useState('60');
@@ -44,7 +47,7 @@ export const SellerControlsModal: React.FC<SellerControlsModalProps> = ({ visibl
             <View className="flex-1 justify-end bg-black/50">
                 <View className="bg-white rounded-t-3xl p-6 h-3/4">
                     <View className="flex-row justify-between items-center mb-6">
-                        <Text className="text-xl font-bold">Seller Controls</Text>
+                        <Text className="text-xl font-bold">{t('live.sellerControls.title')}</Text>
                         <TouchableOpacity onPress={onClose} className="p-2 bg-gray-100 rounded-full">
                             <X size={20} color="black" />
                         </TouchableOpacity>
@@ -55,17 +58,17 @@ export const SellerControlsModal: React.FC<SellerControlsModalProps> = ({ visibl
                         <View className="mb-6 p-4 bg-gray-50 rounded-xl">
                             <View className="flex-row items-center mb-2">
                                 <Layers size={20} color="#4B5563" />
-                                <Text className="font-semibold ml-2 text-gray-700">Inventory & Type</Text>
+                                <Text className="font-semibold ml-2 text-gray-700">{t('live.sellerControls.inventoryType')}</Text>
                             </View>
                             <View className="flex-row justify-between items-center mb-4">
-                                <Text className="text-gray-600">Bulk Sale Mode</Text>
+                                <Text className="text-gray-600">{t('live.sellerControls.bulkMode')}</Text>
                                 <Switch
                                     value={isBulk}
                                     onValueChange={setIsBulk}
                                     trackColor={{ false: "#D1D5DB", true: "#10B981" }}
                                 />
                             </View>
-                            <Text className="text-xs text-gray-500 mb-2">Quantity Available</Text>
+                            <Text className="text-xs text-gray-500 mb-2">{t('live.sellerControls.quantityAvailable')}</Text>
                             <TextInput
                                 value={quantity}
                                 onChangeText={setQuantity}
@@ -79,9 +82,9 @@ export const SellerControlsModal: React.FC<SellerControlsModalProps> = ({ visibl
                         <View className="mb-6 p-4 bg-gray-50 rounded-xl">
                             <View className="flex-row items-center mb-2">
                                 <DollarSign size={20} color="#4B5563" />
-                                <Text className="font-semibold ml-2 text-gray-700">Pricing</Text>
+                                <Text className="font-semibold ml-2 text-gray-700">{t('live.sellerControls.pricing')}</Text>
                             </View>
-                            <Text className="text-xs text-gray-500 mb-2">Starting Bid / Min Price (₹)</Text>
+                            <Text className="text-xs text-gray-500 mb-2">{t('live.sellerControls.startingBid')}</Text>
                             <TextInput
                                 value={startPrice}
                                 onChangeText={setStartPrice}
@@ -95,12 +98,12 @@ export const SellerControlsModal: React.FC<SellerControlsModalProps> = ({ visibl
                         <View className="mb-6 p-4 bg-gray-50 rounded-xl">
                             <View className="flex-row items-center mb-2">
                                 <Timer size={20} color="#4B5563" />
-                                <Text className="font-semibold ml-2 text-gray-700">Timing Rules</Text>
+                                <Text className="font-semibold ml-2 text-gray-700">{t('live.sellerControls.timingRules')}</Text>
                             </View>
 
                             <View className="flex-row gap-4">
                                 <View className="flex-1">
-                                    <Text className="text-xs text-gray-500 mb-2">Duration (sec)</Text>
+                                    <Text className="text-xs text-gray-500 mb-2">{t('live.sellerControls.duration')}</Text>
                                     <TextInput
                                         value={duration}
                                         onChangeText={setDuration}
@@ -110,7 +113,7 @@ export const SellerControlsModal: React.FC<SellerControlsModalProps> = ({ visibl
                                     />
                                 </View>
                                 <View className="flex-1">
-                                    <Text className="text-xs text-gray-500 mb-2">Auto-Gap (sec)</Text>
+                                    <Text className="text-xs text-gray-500 mb-2">{t('live.sellerControls.autoGap')}</Text>
                                     <TextInput
                                         value={autoGap}
                                         onChangeText={setAutoGap}
@@ -128,7 +131,7 @@ export const SellerControlsModal: React.FC<SellerControlsModalProps> = ({ visibl
                         className="bg-black w-full py-4 rounded-full items-center mt-4 mb-8 flex-row justify-center"
                     >
                         <Gavel color="white" size={20} />
-                        <Text className="text-white font-bold text-lg ml-2">Start Auction</Text>
+                        <Text className="text-white font-bold text-lg ml-2">{t('live.sellerControls.startAuction')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

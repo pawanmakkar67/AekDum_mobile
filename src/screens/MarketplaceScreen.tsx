@@ -41,17 +41,64 @@ export const MarketplaceScreen = () => {
 
     // Data for the 2-column grid
     const CATEGORY_GRID_DATA = [
-        { id: '1', name: 'Card Games', watching: '1262 Watching', image: 'https://images.unsplash.com/photo-1613771404721-c5b425876d90?w=500&auto=format&fit=crop&q=60' },
-        { id: '2', name: 'Rocks & Crystals', watching: '845 Watching', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&auto=format&fit=crop&q=60' },
-        { id: '3', name: 'Jewellery', watching: '2.1k Watching', image: 'https://images.unsplash.com/photo-1515562141207-a7a88fb7ce338?w=500&auto=format&fit=crop&q=60' },
-        { id: '4', name: 'Sporting Goods', watching: '533 Watching', image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=500&auto=format&fit=crop&q=60' },
-        { id: '5', name: 'Womens Fashion', watching: '3.4k Watching', image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&auto=format&fit=crop&q=60' },
-        { id: '6', name: 'Mens Fashion', watching: '1.2k Watching', image: 'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=500&auto=format&fit=crop&q=60' },
-        { id: '7', name: 'Electronics', watching: '920 Watching', image: 'https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?w=500&auto=format&fit=crop&q=60' },
-        { id: '8', name: 'Toys', watching: '450 Watching', image: 'https://images.unsplash.com/photo-1566576912902-1d6db6b8d5cb?w=500&auto=format&fit=crop&q=60' },
-    ];
+        {
+            id: '1',
+            name: 'Card Games',
+            watching: '1262 Watching',
+            image: 'https://images.unsplash.com/photo-1609710228159-0fa9bd7c0827?w=500&auto=format&fit=crop&q=60', // playing cards
+        },
+        {
+            id: '2',
+            name: 'Rocks & Crystals',
+            watching: '845 Watching',
+            image: 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=500&auto=format&fit=crop&q=60', // crystals
+        },
+        {
+            id: '3',
+            name: 'Jewellery',
+            watching: '2.1k Watching',
+            image: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?w=500&auto=format&fit=crop&q=60', // jewelry close-up
+        },
+        {
+            id: '4',
+            name: 'Sporting Goods',
+            watching: '533 Watching',
+            image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500&auto=format&fit=crop&q=60', // sports equipment
+        },
+        {
+            id: '5',
+            name: 'Womens Fashion',
+            watching: '3.4k Watching',
+            image: 'https://images.unsplash.com/photo-1520975916090-3105956dac38?w=500&auto=format&fit=crop&q=60', // women fashion
+        },
+        {
+            id: '6',
+            name: 'Mens Fashion',
+            watching: '1.2k Watching',
+            image: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?w=500&auto=format&fit=crop&q=60', // men fashion
+        },
+        {
+            id: '7',
+            name: 'Electronics',
+            watching: '920 Watching',
+            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&auto=format&fit=crop&q=60', // electronics devices
+        },
+        {
+            id: '8',
+            name: 'Toys',
+            watching: '450 Watching',
+            image: 'https://images.unsplash.com/photo-1615486363973-f79d875780cf?w=500&auto=format&fit=crop&q=60', // toys
+        },
+    ]
 
-    const FILTER_OPTIONS = ['All', 'Live Now', 'Auctions', 'Buy It Now', 'Ending Soon', 'Newest'];
+    const FILTER_OPTIONS = [
+        { label: t('profile.filters.all'), value: 'All' },
+        { label: t('profile.filters.liveNow'), value: 'Live Now' },
+        { label: t('profile.filters.auctions'), value: 'Auctions' },
+        { label: t('profile.filters.buyItNow'), value: 'Buy It Now' },
+        { label: t('profile.filters.endingSoon'), value: 'Ending Soon' },
+        { label: t('profile.filters.newest'), value: 'Newest' },
+    ];
 
     const handleProductPress = (productId: string) => {
         navigation.navigate('ProductDetail', { productId });
@@ -75,7 +122,7 @@ export const MarketplaceScreen = () => {
                         <Search size={20} color="gray" />
                         <TextInput
                             style={styles.searchInput}
-                            placeholder="Search Your favourites Product"
+                            placeholder={t('favourite.searchPlaceholder')}
                             placeholderTextColor="gray"
                             value={searchQuery}
                             onChangeText={setSearchQuery}
@@ -83,13 +130,13 @@ export const MarketplaceScreen = () => {
                         />
                         {isSearchFocused ? (
                             <TouchableOpacity onPress={handleSearchCancel}>
-                                <Text style={styles.cancelText}>Cancel</Text>
+                                <Text style={styles.cancelText}>{t('common.cancel')}</Text>
                             </TouchableOpacity>
                         ) : (
                             <TouchableOpacity onPress={() => {
-                                Alert.alert('Voice Search', 'Listening...', [
-                                    { text: 'Cancel', style: 'cancel' },
-                                    { text: 'Mock "Games"', onPress: () => setSearchQuery('Games') }
+                                Alert.alert(t('profile.voiceSearchTitle'), t('profile.voiceSearchBody'), [
+                                    { text: t('common.cancel'), style: 'cancel' },
+                                    { text: t('profile.mockGames'), onPress: () => setSearchQuery('Games') }
                                 ]);
                             }}>
                                 <Mic size={20} color="gray" />
@@ -113,13 +160,13 @@ export const MarketplaceScreen = () => {
                         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filterScroll}>
                             {FILTER_OPTIONS.map((option) => (
                                 <TouchableOpacity
-                                    key={option}
-                                    style={[styles.filterChip, selectedFilter === option && styles.filterChipActive]}
-                                    onPress={() => setSelectedFilter(option)}
+                                    key={option.value}
+                                    style={[styles.filterChip, selectedFilter === option.value && styles.filterChipActive]}
+                                    onPress={() => setSelectedFilter(option.value)}
                                 >
-                                    {selectedFilter === option && <Check size={14} color="white" style={styles.checkIcon} />}
-                                    <Text style={[styles.filterChipText, selectedFilter === option && styles.filterChipTextActive]}>
-                                        {option}
+                                    {selectedFilter === option.value && <Check size={14} color="white" style={styles.checkIcon} />}
+                                    <Text style={[styles.filterChipText, selectedFilter === option.value && styles.filterChipTextActive]}>
+                                        {option.label}
                                     </Text>
                                 </TouchableOpacity>
                             ))}
@@ -133,7 +180,7 @@ export const MarketplaceScreen = () => {
                 <View style={styles.sectionContainer}>
                     <View style={styles.sectionHeader}>
                         <MoreHorizontal size={24} color="black" style={styles.sectionIcon} />
-                        <Text style={styles.sectionTitle}>Browse by Category</Text>
+                        <Text style={styles.sectionTitle}>{t('profile.browseCategory')}</Text>
                     </View>
 
                     <View style={styles.gridContainer}>
@@ -171,9 +218,9 @@ export const MarketplaceScreen = () => {
                 {/* Curated For You Section */}
                 <View style={styles.curatedSection}>
                     <View style={styles.sectionHeaderRow}>
-                        <Text style={styles.sectionTitle}>Curated For You</Text>
+                        <Text style={styles.sectionTitle}>{t('profile.curatedForYou')}</Text>
                         <TouchableOpacity>
-                            <Text style={styles.viewAllText}>View All</Text>
+                            <Text style={styles.viewAllText}>{t('profile.viewAll')}</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -198,12 +245,12 @@ export const MarketplaceScreen = () => {
                                 <View style={styles.overlayWeak} />
 
                                 <View style={styles.exclusiveBadge}>
-                                    <Text style={styles.exclusiveText}>EXCLUSIVE</Text>
+                                    <Text style={styles.exclusiveText}>{t('profile.exclusive')}</Text>
                                 </View>
 
                                 <View style={styles.productInfo}>
                                     <Text style={styles.productName} numberOfLines={1}>{product.name}</Text>
-                                    <Text style={styles.productTime}>Starting in 20m</Text>
+                                    <Text style={styles.productTime}>{t('profile.startingIn', { time: '20m' })}</Text>
                                 </View>
                             </TouchableOpacity>
                         ))}

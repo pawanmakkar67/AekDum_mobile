@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, Animated, PanResponder, Dimensions } from 'react-native';
 import { ChevronsRight } from 'lucide-react-native';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface SwipeButtonProps {
     onSwipeSuccess: () => void;
@@ -25,6 +26,7 @@ export const SwipeButton: React.FC<SwipeButtonProps> = ({
     thumbColor = '#000000',
     successColor = '#10B981', // green-500
 }) => {
+    const { t } = useTranslation();
     const [swiped, setSwiped] = useState(false);
     const containerWidthRef = useRef(0);
     const [containerWidth, setContainerWidth] = useState(0);
@@ -112,7 +114,7 @@ export const SwipeButton: React.FC<SwipeButtonProps> = ({
                 style={{ opacity: swiped ? 0 : opacity }}
             >
                 <Text className="font-bold text-gray-500 text-lg">
-                    {swiped ? 'Confirmed!' : label}
+                    {swiped ? t('live.bidding.confirmed') : label}
                 </Text>
             </Animated.View>
 

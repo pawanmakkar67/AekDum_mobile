@@ -74,7 +74,7 @@ export const FavouriteScreen = () => {
         },
     ];
 
-    const CATEGORY_TAGS = ['Sneakers', 'Jewellery', 'Accessories', 'Electronics'];
+    const CATEGORY_TAGS = ['sneakers', 'jewellery', 'accessories', 'electronics'];
 
     const handleProductPress = (productId: string) => {
         // navigation.navigate('ProductDetail', { productId });
@@ -151,7 +151,7 @@ export const FavouriteScreen = () => {
                 <View style={styles.sectionContainer}>
                     <View style={styles.sectionHeader}>
                         <MoreHorizontal size={24} color="black" style={styles.sectionIcon} />
-                        <Text style={styles.sectionTitle}>Browse by Category</Text>
+                        <Text style={styles.sectionTitle}>{t('favourite.browseCategory')}</Text>
                     </View>
 
                     <View style={styles.gridContainer}>
@@ -212,7 +212,7 @@ export const FavouriteScreen = () => {
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.tagsScroll}>
                     {CATEGORY_TAGS.map((tag, index) => (
                         <TouchableOpacity key={index} style={styles.categoryTag}>
-                            <Text style={styles.categoryTagText}>{tag}</Text>
+                            <Text style={styles.categoryTagText}>{t(`favourite.tags.${tag}` as any)}</Text>
                         </TouchableOpacity>
                     ))}
                 </ScrollView>

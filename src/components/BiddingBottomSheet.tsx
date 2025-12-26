@@ -97,7 +97,7 @@ export const BiddingBottomSheet: React.FC<BiddingBottomSheetProps> = ({
                     {/* Header */}
                     <View style={styles.header}>
                         <View style={styles.headerLeft}>
-                            <Text style={styles.title}>Live Auction</Text>
+                            <Text style={styles.title}>{t('live.bidding.liveAuction')}</Text>
                             <Animated.View
                                 style={[
                                     styles.timerContainer,
@@ -106,7 +106,7 @@ export const BiddingBottomSheet: React.FC<BiddingBottomSheetProps> = ({
                             >
                                 <Clock color={timeColor} size={14} />
                                 <Text style={[styles.timerText, { color: timeColor }]}>
-                                    {bidData.isActive ? formatTime(bidData.timeLeft) : 'Ended'}
+                                    {bidData.isActive ? formatTime(bidData.timeLeft) : t('live.bidding.ended')}
                                 </Text>
                             </Animated.View>
                         </View>
@@ -118,32 +118,32 @@ export const BiddingBottomSheet: React.FC<BiddingBottomSheetProps> = ({
                     {/* Wallet Info */}
                     <View className="flex-row justify-between items-center mb-4 px-3 py-2 bg-gray-50 rounded-lg border border-gray-100">
                         <View className="flex-row items-center">
-                            <Text className="text-xs text-gray-500 font-medium">Wallet Balance:</Text>
-                            <Text className="text-sm font-bold ml-1 text-gray-900">₹{walletBalance.toLocaleString()}</Text>
+                            <Text className="text-xs text-gray-500 font-medium">{t('live.bidding.walletBalance')}</Text>
+                            <Text className="text-sm font-bold ml-1 text-gray-900">{t('common.currency')}{walletBalance.toLocaleString()}</Text>
                         </View>
                         {blockedAmount > 0 && (
                             <View className="flex-row items-center">
-                                <Text className="text-xs text-red-500 font-medium">Blocked:</Text>
-                                <Text className="text-sm font-bold ml-1 text-red-600">₹{blockedAmount.toLocaleString()}</Text>
+                                <Text className="text-xs text-red-500 font-medium">{t('live.bidding.blocked')}</Text>
+                                <Text className="text-sm font-bold ml-1 text-red-600">{t('common.currency')}{blockedAmount.toLocaleString()}</Text>
                             </View>
                         )}
                     </View>
 
                     {/* Current Bid Display */}
                     <View style={[styles.bidDisplay, bidSuccess && styles.bidDisplaySuccess]}>
-                        <Text style={styles.bidLabel}>Current Bid</Text>
+                        <Text style={styles.bidLabel}>{t('live.bidding.currentBid')}</Text>
                         <Text style={[styles.bidAmount, bidSuccess && styles.bidAmountSuccess]}>
                             {t('common.currency')}{bidData.currentBid}
                         </Text>
                         {isWinning ? (
                             <View style={styles.winningBadge}>
                                 <TrendingUp color="#10B981" size={16} />
-                                <Text style={styles.winningText}>You're winning!</Text>
+                                <Text style={styles.winningText}>{t('live.bidding.winning')}</Text>
                             </View>
                         ) : bidData.totalBids > 0 && (
                             <View style={styles.bidsInfo}>
                                 <TrendingUp color="rgba(0,0,0,0.5)" size={14} />
-                                <Text style={styles.bidsCount}>{bidData.totalBids} bids</Text>
+                                <Text style={styles.bidsCount}>{bidData.totalBids} {t('live.bidding.bids')}</Text>
                             </View>
                         )}
                     </View>
@@ -151,7 +151,7 @@ export const BiddingBottomSheet: React.FC<BiddingBottomSheetProps> = ({
                     {/* Quick Bid Controls */}
                     {bidData.isActive && (
                         <View style={styles.bidControls}>
-                            <Text style={styles.sectionLabel}>Quick Bid</Text>
+                            <Text style={styles.sectionLabel}>{t('live.bidding.quickBid')}</Text>
 
                             {/* Increment Buttons */}
                             <View style={styles.incrementRow}>
@@ -177,7 +177,7 @@ export const BiddingBottomSheet: React.FC<BiddingBottomSheetProps> = ({
                             {/* Yellow Swipe-to-Bid */}
                             <SwipeButton
                                 onSwipeSuccess={() => handleQuickBid(selectedIncrement)}
-                                label={`Swipe to Bid ${t('common.currency')}${bidData.currentBid + selectedIncrement}`}
+                                label={`${t('live.bidding.swipeToBid')} ${t('common.currency')}${bidData.currentBid + selectedIncrement}`}
                                 backgroundColor="rgba(255, 193, 7, 0.2)"
                                 thumbColor="#FFC107"
                                 successColor="#10B981"
@@ -192,7 +192,7 @@ export const BiddingBottomSheet: React.FC<BiddingBottomSheetProps> = ({
                                 onPress={() => setShowHistory(!showHistory)}
                                 style={styles.historyToggle}
                             >
-                                <Text style={styles.historyToggleText}>Bid History</Text>
+                                <Text style={styles.historyToggleText}>{t('live.bidding.history')}</Text>
                                 {showHistory ? (
                                     <ChevronUp color="rgba(0,0,0,0.6)" size={20} />
                                 ) : (
@@ -203,7 +203,7 @@ export const BiddingBottomSheet: React.FC<BiddingBottomSheetProps> = ({
                             {showHistory && (
                                 <View style={styles.historyContainer}>
                                     {bidData.bidHistory.length === 0 ? (
-                                        <Text style={styles.noBidsText}>No bids yet</Text>
+                                        <Text style={styles.noBidsText}>{t('live.bidding.noBids')}</Text>
                                     ) : (
                                         bidData.bidHistory.slice(0, 5).map((bid, index) => (
                                             <View

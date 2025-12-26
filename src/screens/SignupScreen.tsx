@@ -54,15 +54,15 @@ export const SignupScreen = () => {
                     </View>
 
                     <Text style={styles.title}>
-                        {otpSent ? 'Verification' : 'Welcome Back'}
+                        {otpSent ? t('auth.verification') : t('auth.welcomeBack')}
                     </Text>
                     <Text style={styles.subtitle}>
                         {otpSent
-                            ? `Enter the code sent to ${phone}`
-                            : 'Verify your mobile Number'}
+                            ? t('auth.enterCode', { phone })
+                            : t('auth.verifyNumber')}
                     </Text>
                     {!otpSent && <Text style={styles.description}>
-                        In order to maintain a secure and trustworthy community, we verify each new account.
+                        {t('auth.verifyDesc')}
                     </Text>}
 
 
@@ -71,7 +71,7 @@ export const SignupScreen = () => {
                         <View style={styles.inputWrapper}>
                             <TextInput
                                 style={styles.input}
-                                placeholder="Full Name"
+                                placeholder={t('auth.fullName')}
                                 placeholderTextColor="#9ca3af"
                                 value={name}
                                 onChangeText={setName}
@@ -100,7 +100,7 @@ export const SignupScreen = () => {
                             <View style={styles.inputWrapper}>
                                 <TextInput
                                     style={[styles.input, styles.otpInput]}
-                                    placeholder="Enter OTP Number"
+                                    placeholder={t('auth.enterOtp')}
                                     placeholderTextColor="#9ca3af"
                                     keyboardType="number-pad"
                                     maxLength={4}
@@ -116,13 +116,13 @@ export const SignupScreen = () => {
                             onPress={otpSent ? handleVerify : handleSendOtp}
                         >
                             <Text style={styles.buttonText}>
-                                {otpSent ? 'Verify OTP' : 'Send OTP'}
+                                {otpSent ? t('auth.verifyOtp') : t('auth.sendOtp')}
                             </Text>
                         </TouchableOpacity>
 
                         {/* Or Continue With */}
                         <View style={styles.orContainer}>
-                            <Text style={styles.orText}>Or Continue with</Text>
+                            <Text style={styles.orText}>{t('auth.orContinue')}</Text>
                         </View>
 
                         {/* Social Buttons */}
@@ -144,8 +144,8 @@ export const SignupScreen = () => {
                         <View style={styles.footerContainer}>
                             {!otpSent ? (
                                 <Text style={styles.footerText}>
-                                    Have an account? <Text style={styles.linkText} onPress={() => navigation.navigate('Login')}
-                                    >Log In</Text>
+                                    {t('auth.haveAccount')}<Text style={styles.linkText} onPress={() => navigation.navigate('Login')}
+                                    >{t('auth.login')}</Text>
                                     {/* Link to Login? The user flow is confused here. 
                                         If we are ON SignupScreen, this should link to Login. 
                                         But text says "Don't have an account? Sign Up". 
@@ -154,12 +154,12 @@ export const SignupScreen = () => {
                                 </Text>
                             ) : (
                                 <TouchableOpacity onPress={() => setOtpSent(false)}>
-                                    <Text style={styles.linkText}>Wrong number? Edit</Text>
+                                    <Text style={styles.linkText}>{t('auth.wrongNumber')}</Text>
                                 </TouchableOpacity>
                             )}
 
                             <Text style={styles.termsText}>
-                                By continuing, you agree to Aekdum's Terms and Privacy. Policy
+                                {t('auth.terms')}
                             </Text>
                         </View>
                     </View>

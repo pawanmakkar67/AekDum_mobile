@@ -285,7 +285,7 @@ export const LiveStreamScreen = () => {
             setSelectedAuctionProduct(product);
             setShowBiddingSheet(true);
         } else if (stream.isReplay) {
-            Alert.alert('Replay Mode', 'Bidding is not available during replays.');
+            Alert.alert(t('live.replayMode'), t('live.biddingNotAvailable'));
         } else {
             setSelectedProduct(product);
             setShowCheckout(true);
@@ -323,11 +323,23 @@ export const LiveStreamScreen = () => {
         // In a real app, this would update the backend state
         if (taggedProducts.length > 0) {
             const product = taggedProducts[0].product;
+
+            // Initialize the auction in the context with the config duration
+            initializeBid(
+                product.id,
+                biddingService.initializeAuction(
+                    product.id,
+                    config.startPrice,
+                    undefined, // buyNowPrice
+                    config.duration // Pass duration from config (default 60s)
+                )
+            );
+
             // Update the product with new auction data
-            // For now just logs
-            Alert.alert('Auction Started', `Quantity: ${config.quantity}, Price: ${config.startPrice}`);
+            Alert.alert(t('live.auctionStarted'), `Quantity: ${config.quantity}, Price: ${config.startPrice}`);
 
             // SIMULATION: End auction after duration and notify winner
+            // Note: The visual timer is handled by BiddingContext, this is for the "end" event logic
             setTimeout(() => {
                 notificationService.sendAuctionWon(product.title, config.startPrice + 50); // Simulating a higher winning price
                 notificationService.sendPaymentReminder(product.title);
@@ -356,7 +368,7 @@ export const LiveStreamScreen = () => {
                     <View style={styles.streamerInfo}>
                         {stream.isReplay ? (
                             <View style={[styles.liveBadge, { backgroundColor: 'rgba(107, 114, 128, 0.9)' }]}>
-                                <Text style={styles.liveText}>REPLAY</Text>
+                                <Text style={styles.liveText}>{t('live.replay')}</Text>
                             </View>
                         ) : (
                             <View style={styles.liveBadge}>
@@ -382,7 +394,7 @@ export const LiveStreamScreen = () => {
                         onPress={() => setShowSellerControls(true)}
                     >
                         <Settings color="#fff" size={20} />
-                        <Text style={styles.sellerToolsText}>Seller Tools</Text>
+                        <Text style={styles.sellerToolsText}>{t('live.sellerTools')}</Text>
                     </TouchableOpacity>
                 )}
 
@@ -390,18 +402,18 @@ export const LiveStreamScreen = () => {
                 {pendingPayments.length > 0 && (
                     <View className="mx-4 mt-2 bg-red-100 p-3 rounded-lg border border-red-200 flex-row justify-between items-center">
                         <View>
-                            <Text className="text-red-800 font-bold text-xs">PAYMENT DUE: {pendingPayments[0].productName}</Text>
-                            <Text className="text-red-600 text-[10px]">{Math.ceil((pendingPayments[0].dueDate - Date.now()) / 60000)} mins left</Text>
+                            <Text className="text-red-800 font-bold text-xs">{t('live.paymentDue')} {pendingPayments[0].productName}</Text>
+                            <Text className="text-red-600 text-[10px]">{Math.ceil((pendingPayments[0].dueDate - Date.now()) / 60000)} {t('live.minsLeft')}</Text>
                         </View>
                         <TouchableOpacity
                             className="bg-red-600 px-3 py-1.5 rounded-full"
                             onPress={() => {
                                 const success = payForProduct(pendingPayments[0].id);
-                                if (success) Alert.alert('Payment Successful', 'Thank you for your payment!');
-                                else Alert.alert('Payment Failed', 'Insufficient funds');
+                                if (success) Alert.alert(t('live.paymentSuccess'), 'Thank you for your payment!');
+                                else Alert.alert(t('live.paymentFailed'), 'Insufficient funds');
                             }}
                         >
-                            <Text className="text-white text-xs font-bold">Pay ₹{pendingPayments[0].amount}</Text>
+                            <Text className="text-white text-xs font-bold">{t('live.pay')} ₹{pendingPayments[0].amount}</Text>
                         </TouchableOpacity>
                     </View>
                 )}
@@ -617,6 +629,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.2)',
+        marginTop: -10
     },
     titleContainer: {
         paddingHorizontal: 16,
@@ -705,7 +718,7 @@ const styles = StyleSheet.create({
     },
     sellerToolsButton: {
         position: 'absolute',
-        top: 60,
+        top: 100,
         right: 16,
         backgroundColor: 'rgba(0,0,0,0.6)',
         flexDirection: 'row',

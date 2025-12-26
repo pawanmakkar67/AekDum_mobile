@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 import { View, Text, Image, TouchableOpacity, Alert, Animated } from 'react-native';
-import { Box, Sparkles } from 'lucide-react-native';
+import { Box, Sparkles, ImageOff } from 'lucide-react-native';
 
 interface ProductCardProps {
     product: {
@@ -20,6 +20,7 @@ export const ProductCard = ({ product, onPress }: ProductCardProps) => {
     const { t } = useTranslation();
     const [is3DGenerated, setIs3DGenerated] = useState(false);
     const [isGenerating, setIsGenerating] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
     const handle3DGenerate = (e: any) => {
         e.stopPropagation();
@@ -53,8 +54,17 @@ export const ProductCard = ({ product, onPress }: ProductCardProps) => {
                 elevation: 10
             } : {}}
         >
-            <View className="h-40 w-full bg-gray-100 relative">
-                <Image source={{ uri: product.image }} className="h-full w-full" resizeMode="cover" />
+            <View className="h-40 w-full bg-gray-100 relative items-center justify-center">
+                {imageError ? (
+                    <ImageOff size={48} color="#9ca3af" />
+                ) : (
+                    <Image
+                        source={{ uri: product.image }}
+                        className="h-full w-full"
+                        resizeMode="cover"
+                        onError={() => setImageError(true)}
+                    />
+                )}
 
                 {/* 3D Toggle Button */}
                 <TouchableOpacity

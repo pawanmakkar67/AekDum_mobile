@@ -71,13 +71,13 @@ const MOCK_ACTIVITY = [
     }
 ];
 
-const FILTER_TABS = ['All', 'Buying', 'Selling', 'Live Bids'];
+const FILTER_TABS = ['all', 'buying', 'selling', 'liveBids'];
 
 export const ActivityScreen = () => {
     const navigation = useNavigation<any>();
     const { t } = useTranslation();
     const [searchQuery, setSearchQuery] = useState('');
-    const [selectedFilter, setSelectedFilter] = useState('All');
+    const [selectedFilter, setSelectedFilter] = useState('all');
 
     const renderCard = (item: any) => {
         switch (item.type) {
@@ -89,21 +89,21 @@ export const ActivityScreen = () => {
                             <View style={styles.cardInfo}>
                                 <LiveBadge style={{ alignSelf: 'flex-start', marginBottom: 4 }} />
                                 <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
-                                <Text style={styles.bidText}>Your Bid: <Text style={styles.purpleText}>₹{item.yourBid}</Text></Text>
+                                <Text style={styles.bidText}>{t('activity.yourBid')} <Text style={styles.purpleText}>₹{item.yourBid}</Text></Text>
                                 <View style={styles.sellerRow}>
                                     <Image source={{ uri: item.sellerAvatar }} style={styles.avatarSmall} />
                                     <Text style={styles.sellerName}>{item.seller}</Text>
                                     <View style={styles.dotSeparator} />
                                     <Clock size={12} color="#9ca3af" />
-                                    <Text style={styles.timeText}>Ends Bid in <Text style={{ color: '#22c55e' }}>{item.timeLeft}</Text></Text>
+                                    <Text style={styles.timeText}>{t('activity.endsBidIn')} <Text style={{ color: '#22c55e' }}>{item.timeLeft}</Text></Text>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.divider} />
                         <View style={styles.cardFooter}>
-                            <Text style={styles.footerLabel}>Current Bid : <Text style={styles.redText}>₹{item.currentBid}</Text></Text>
+                            <Text style={styles.footerLabel}>{t('activity.currentBid')} <Text style={styles.redText}>₹{item.currentBid}</Text></Text>
                             <TouchableOpacity style={styles.bidButton}>
-                                <Text style={styles.bidButtonText}>Bid ₹{item.nextBid}</Text>
+                                <Text style={styles.bidButtonText}>{t('activity.bid')} ₹{item.nextBid}</Text>
                                 <ChevronUp size={14} color="white" style={{ marginLeft: 4 }} />
                             </TouchableOpacity>
                         </View>
@@ -116,23 +116,23 @@ export const ActivityScreen = () => {
                         <View style={styles.cardContent}>
                             <Image source={{ uri: item.image }} style={styles.productImage} />
                             <View style={styles.cardInfo}>
-                                <Text style={styles.winningText}>WINNING</Text>
+                                <Text style={styles.winningText}>{t('activity.winning')}</Text>
                                 <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
-                                <Text style={styles.bidText}>Your Bid: <Text style={styles.purpleText}>₹{item.yourBid}</Text> <Text style={styles.grayText}>(Save ₹{item.saveAmount})</Text></Text>
+                                <Text style={styles.bidText}>{t('activity.yourBid')} <Text style={styles.purpleText}>₹{item.yourBid}</Text> <Text style={styles.grayText}>{t('activity.save', { amount: item.saveAmount })}</Text></Text>
                                 <View style={styles.sellerRow}>
                                     <Image source={{ uri: item.sellerAvatar }} style={styles.avatarSmall} />
                                     <Text style={styles.sellerName}>{item.seller}</Text>
                                     <View style={styles.dotSeparator} />
                                     <Clock size={12} color="#9ca3af" />
-                                    <Text style={[styles.timeText, { color: '#d946ef' }]}>Order within {item.orderTime}</Text>
+                                    <Text style={[styles.timeText, { color: '#d946ef' }]}>{t('activity.orderWithin', { time: item.orderTime })}</Text>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.divider} />
                         <View style={styles.cardFooter}>
-                            <Text style={styles.footerLabel}>Sold For : <Text style={styles.redText}>₹{item.soldFor}</Text></Text>
+                            <Text style={styles.footerLabel}>{t('activity.soldFor')} <Text style={styles.redText}>₹{item.soldFor}</Text></Text>
                             <TouchableOpacity style={styles.outlineButton}>
-                                <Text style={styles.outlineButtonText}>Order</Text>
+                                <Text style={styles.outlineButtonText}>{t('activity.order')}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -145,21 +145,21 @@ export const ActivityScreen = () => {
                             <Image source={{ uri: item.image }} style={styles.productImage} />
                             <View style={styles.cardInfo}>
                                 <Text style={[styles.title, { marginTop: 2 }]} numberOfLines={1}>{item.title}</Text>
-                                <Text style={styles.bidText}>Your Bid: ₹{item.yourBid}</Text>
+                                <Text style={styles.bidText}>{t('activity.yourBid')} ₹{item.yourBid}</Text>
                                 <View style={[styles.sellerRow, { marginTop: 8 }]}>
                                     <Image source={{ uri: item.sellerAvatar }} style={styles.avatarSmall} />
                                     <Text style={styles.sellerName}>{item.seller}</Text>
                                     <View style={styles.dotSeparator} />
                                     <Clock size={12} color="#9ca3af" />
-                                    <Text style={styles.timeText}>Ended Bid {item.endedTime}</Text>
+                                    <Text style={styles.timeText}>{t('activity.endedBid', { time: item.endedTime })}</Text>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.divider} />
                         <View style={styles.cardFooter}>
-                            <Text style={styles.footerLabel}>Sold For : <Text style={styles.redText}>₹{item.soldFor}</Text></Text>
+                            <Text style={styles.footerLabel}>{t('activity.soldFor')} <Text style={styles.redText}>₹{item.soldFor}</Text></Text>
                             <TouchableOpacity style={[styles.outlineButton, { borderColor: '#e5e7eb' }]}>
-                                <Text style={[styles.outlineButtonText, { color: '#9ca3af' }]}>OUTBID</Text>
+                                <Text style={[styles.outlineButtonText, { color: '#9ca3af' }]}>{t('activity.outbid')}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -170,11 +170,11 @@ export const ActivityScreen = () => {
                     <View key={item.id} style={styles.notificationCard}>
                         <Image source={{ uri: item.sellerAvatar }} style={styles.notificationAvatar} />
                         <View style={styles.notificationInfo}>
-                            <Text style={styles.notificationTitle}>{item.seller} <Text style={{ fontWeight: '400' }}>is Live Now!</Text></Text>
+                            <Text style={styles.notificationTitle}>{item.seller} <Text style={{ fontWeight: '400' }}>{t('activity.isLiveNow')}</Text></Text>
                             <Text style={styles.notificationSubtitle} numberOfLines={1}>{item.subtitle}</Text>
                         </View>
                         <TouchableOpacity style={styles.joinButton}>
-                            <Text style={styles.joinButtonText}>Join</Text>
+                            <Text style={styles.joinButtonText}>{t('activity.join')}</Text>
                         </TouchableOpacity>
                     </View>
                 );
@@ -199,14 +199,14 @@ export const ActivityScreen = () => {
                         <View style={styles.cardContent}>
                             <Image source={{ uri: item.image }} style={styles.productImage} />
                             <View style={styles.cardInfo}>
-                                <Text style={styles.deliveredText}>{item.status}</Text>
+                                <Text style={styles.deliveredText}>{t('activity.delivered')}</Text>
                                 <Text style={[styles.title, { fontSize: 16 }]}>{item.title}</Text>
-                                <Text style={styles.bidText}>Paid : <Text style={styles.blackBold}>₹{item.paid}</Text> <Text style={styles.grayText}>(Save ₹{item.save})</Text></Text>
+                                <Text style={styles.bidText}>{t('activity.paid')} <Text style={styles.blackBold}>₹{item.paid}</Text> <Text style={styles.grayText}>{t('activity.save', { amount: item.save })}</Text></Text>
                             </View>
                         </View>
                         <View style={styles.divider} />
                         <TouchableOpacity style={styles.fullWidthButton}>
-                            <Text style={styles.fullWidthButtonText}>Leave Review</Text>
+                            <Text style={styles.fullWidthButtonText}>{t('activity.leaveReview')}</Text>
                         </TouchableOpacity>
                     </View>
                 );
@@ -244,10 +244,10 @@ export const ActivityScreen = () => {
                     <TouchableOpacity
                         key={tab}
                         onPress={() => setSelectedFilter(tab)}
-                        style={[styles.filterPill, index === 0 ? styles.filterPillActive : styles.filterPillInactive]}
+                        style={[styles.filterPill, selectedFilter === tab ? styles.filterPillActive : styles.filterPillInactive]}
                     >
-                        <Text style={[styles.filterText, index === 0 ? styles.filterTextActive : styles.filterTextInactive]}>
-                            {tab}
+                        <Text style={[styles.filterText, selectedFilter === tab ? styles.filterTextActive : styles.filterTextInactive]}>
+                            {t(`activity.tabs.${tab}` as any)}
                         </Text>
                     </TouchableOpacity>
                 ))}

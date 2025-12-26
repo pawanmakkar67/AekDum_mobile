@@ -31,6 +31,12 @@ export function ProductTagOverlay({
     const { getBidData } = useBidding();
     const { t } = useTranslation();
 
+    const formatTime = (seconds: number) => {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    };
+
     if (!visible || taggedProducts.length === 0) {
         return null;
     }
@@ -41,7 +47,7 @@ export function ProductTagOverlay({
             {pinnedProduct && (
                 <View style={styles.pinnedContainer}>
                     <View style={styles.pinnedBadge}>
-                        <Text style={styles.pinnedText}>📌 FEATURED</Text>
+                        <Text style={styles.pinnedText}>{t('live.liveOverlay.featured')}</Text>
                     </View>
                     <TouchableOpacity
                         style={styles.pinnedProduct}
@@ -58,11 +64,18 @@ export function ProductTagOverlay({
                             </Text>
                             {isAuctionProduct(pinnedProduct.product) && getBidData(pinnedProduct.product.id) ? (
                                 <>
-                                    <Text style={styles.auctionLabel}>Current Bid</Text>
-                                    <Text style={styles.auctionPrice}>{t('common.currency')}{getBidData(pinnedProduct.product.id)?.currentBid}</Text>
-                                    {(getBidData(pinnedProduct.product.id)?.totalBids ?? 0) > 0 && (
-                                        <Text style={styles.auctionBids}>{getBidData(pinnedProduct.product.id)?.totalBids} bids</Text>
-                                    )}
+                                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <Text style={styles.auctionLabel}>{t('live.liveOverlay.currentBid')}</Text>
+                                        <Text style={[styles.timerText, getBidData(pinnedProduct.product.id)?.timeLeft! < 30 && styles.timerUrgent]}>
+                                            {formatTime(getBidData(pinnedProduct.product.id)?.timeLeft || 0)}
+                                        </Text>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 6 }}>
+                                        <Text style={styles.auctionPrice}>{t('common.currency')}{getBidData(pinnedProduct.product.id)?.currentBid}</Text>
+                                        {(getBidData(pinnedProduct.product.id)?.totalBids ?? 0) > 0 && (
+                                            <Text style={styles.auctionBids}>{getBidData(pinnedProduct.product.id)?.totalBids} {t('live.liveOverlay.bids')}</Text>
+                                        )}
+                                    </View>
                                 </>
                             ) : (
                                 <>
@@ -80,10 +93,10 @@ export function ProductTagOverlay({
                                     </View>
                                     <View style={styles.inventoryRow}>
                                         <Text style={styles.inventoryText}>
-                                            {pinnedProduct.inventory.available} left
+                                            {pinnedProduct.inventory.available} {t('live.liveOverlay.left')}
                                         </Text>
                                         {pinnedProduct.inventory.available < 10 && (
-                                            <Text style={styles.lowStockText}>Low stock!</Text>
+                                            <Text style={styles.lowStockText}>{t('live.liveOverlay.lowStock')}</Text>
                                         )}
                                     </View>
                                 </>
@@ -97,7 +110,7 @@ export function ProductTagOverlay({
                                     onPlaceBid(pinnedProduct);
                                 }}
                             >
-                                <Text style={styles.placeBidText}>Bid</Text>
+                                <Text style={styles.placeBidText}>{t('live.liveOverlay.bid')}</Text>
                             </TouchableOpacity>
                         ) : (
                             <TouchableOpacity
@@ -141,7 +154,7 @@ export function ProductTagOverlay({
 
                                 {product.isFlashDeal && (
                                     <View style={styles.dealBadge}>
-                                        <Text style={styles.dealText}>🔥 DEAL</Text>
+                                        <Text style={styles.dealText}>{t('live.liveOverlay.deal')}</Text>
                                     </View>
                                 )}
 
@@ -151,10 +164,10 @@ export function ProductTagOverlay({
                                     </Text>
                                     {isAuction && bidData ? (
                                         <>
-                                            <Text style={styles.auctionLabel}>Current Bid</Text>
+                                            <Text style={styles.auctionLabel}>{t('live.liveOverlay.currentBid')}</Text>
                                             <Text style={styles.auctionPrice}>{t('common.currency')}{bidData.currentBid}</Text>
                                             {bidData.totalBids > 0 && (
-                                                <Text style={styles.auctionBids}>{bidData.totalBids} bids</Text>
+                                                <Text style={styles.auctionBids}>{bidData.totalBids} {t('live.liveOverlay.bids')}</Text>
                                             )}
                                         </>
                                     ) : (
@@ -164,7 +177,7 @@ export function ProductTagOverlay({
                                             </Text>
                                             {product.inventory.available < 10 && (
                                                 <Text style={styles.stockWarning}>
-                                                    Only {product.inventory.available} left!
+                                                    {t('live.liveOverlay.onlyLeft', { count: product.inventory.available })}
                                                 </Text>
                                             )}
                                         </>
@@ -179,7 +192,7 @@ export function ProductTagOverlay({
                                             onPlaceBid(product);
                                         }}
                                     >
-                                        <Text style={styles.miniPlaceBidText}>Bid</Text>
+                                        <Text style={styles.miniPlaceBidText}>{t('live.liveOverlay.bid')}</Text>
                                     </TouchableOpacity>
                                 ) : (
                                     <TouchableOpacity
@@ -298,6 +311,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
+        marginLeft: 10
     },
     carousel: {
         paddingLeft: 16,
@@ -400,5 +414,14 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontSize: 11,
         fontWeight: 'bold',
+    },
+    timerText: {
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
+        fontVariant: ['tabular-nums'],
+    },
+    timerUrgent: {
+        color: '#EF4444',
     },
 });

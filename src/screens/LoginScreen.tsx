@@ -35,8 +35,8 @@ export const LoginScreen = () => {
 
                 {/* Title */}
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Welcome Back</Text>
-                    <Text style={styles.subtitle}>Login to catch latest drop live</Text>
+                    <Text style={styles.title}>{t('auth.welcomeBack')}</Text>
+                    <Text style={styles.subtitle}>{t('auth.loginSubtitle')}</Text>
                 </View>
 
                 {/* Form */}
@@ -44,34 +44,34 @@ export const LoginScreen = () => {
                     <AuthInput
                         value={email}
                         onChangeText={setEmail}
-                        placeholder="Enter your email"
+                        placeholder={t('auth.emailPlaceholder')}
                         keyboardType="email-address"
                         icon={<Mail color="#64748b" size={20} />}
                     />
                     <AuthInput
                         value={password}
                         onChangeText={setPassword}
-                        placeholder="Enter your password"
+                        placeholder={t('auth.passwordPlaceholder')}
                         isPassword
                     />
                 </View>
 
                 {/* Forgot Password */}
                 <TouchableOpacity style={styles.forgotPassword}>
-                    <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+                    <Text style={styles.forgotPasswordText}>{t('auth.forgotPassword')}</Text>
                 </TouchableOpacity>
 
                 {/* Login Button */}
                 <TouchableOpacity
                     style={styles.loginButton}
-                    onPress={() => navigation.replace('Main')}
+                    onPress={() => navigation.replace('Main', { screen: 'Home' })}
                 >
-                    <Text style={styles.loginButtonText}>Log In</Text>
+                    <Text style={styles.loginButtonText}>{t('auth.login')}</Text>
                 </TouchableOpacity>
 
                 {/* Or Continue With */}
                 <View style={styles.dividerContainer}>
-                    <Text style={styles.dividerText}>Or Continue with</Text>
+                    <Text style={styles.dividerText}>{t('auth.orContinue')}</Text>
                 </View>
 
                 {/* Social Buttons */}
@@ -85,13 +85,13 @@ export const LoginScreen = () => {
                 <View style={styles.signupFooter}>
                     <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                         <Text style={styles.footerText}>
-                            Don't have an account? <Text style={styles.signupLink}>Sign Up</Text>
+                            {t('auth.noAccount')}<Text style={styles.signupLink}>{t('auth.signup')}</Text>
                         </Text>
                     </TouchableOpacity>
                 </View>
 
                 <Text style={styles.termsText}>
-                    By continuing, you agree to Aekdum's Terms and Privacy. Policy
+                    {t('auth.terms')}
                 </Text>
 
             </LinearGradient>

@@ -7,12 +7,14 @@ import { RootStackParamList } from '../types/navigation';
 import { AuctionCard } from '../components/AuctionCard';
 import { PRODUCTS } from '../data/mockData';
 import { ArrowLeft } from 'lucide-react-native';
+import { useTranslation } from '../hooks/useTranslation';
 
 type AuctionsListScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'AuctionsList'>;
 
 export const AuctionsListScreen = () => {
     const insets = useSafeAreaInsets();
     const navigation = useNavigation<AuctionsListScreenNavigationProp>();
+    const { t } = useTranslation();
 
     // Filter only auction items
     const auctionItems = PRODUCTS.filter(p => p.isAuction);
@@ -22,7 +24,7 @@ export const AuctionsListScreen = () => {
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
                 <ArrowLeft size={24} color="#000" />
             </TouchableOpacity>
-            <Text style={styles.headerTitle}>Auctions</Text>
+            <Text style={styles.headerTitle}>{t('navigation.auctions')}</Text>
             <View style={{ width: 24 }} />
         </View>
     );

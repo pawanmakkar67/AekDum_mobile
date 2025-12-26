@@ -6,7 +6,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/navigation';
 import { LiveStreamCard } from '../components/LiveStreamCard';
 import { LIVE_STREAMS } from '../data/mockData';
-import { Header } from '../components/Header'; // Reusing header or creating a simple back header? The design implies a detail screen.
+import { Header } from '../components/Header';
+import { useTranslation } from '../hooks/useTranslation';
 // Implementing a simple back header for now as it's a detail screen, but maybe we want the main header?
 // The prompt says "details screen with specific designs".
 // Usually "View All" screens have a back button title.
@@ -18,13 +19,14 @@ type LiveShoppingListScreenNavigationProp = NativeStackNavigationProp<RootStackP
 export const LiveShoppingListScreen = () => {
     const insets = useSafeAreaInsets();
     const navigation = useNavigation<LiveShoppingListScreenNavigationProp>();
+    const { t } = useTranslation();
 
     const renderHeader = () => (
         <View style={styles.header}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
                 <ArrowLeft size={24} color="#000" />
             </TouchableOpacity>
-            <Text style={styles.headerTitle}>Live Shopping</Text>
+            <Text style={styles.headerTitle}>{t('profile.liveShopping')}</Text>
             <View style={{ width: 24 }} />
         </View>
     );

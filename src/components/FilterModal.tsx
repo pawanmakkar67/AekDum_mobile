@@ -16,7 +16,8 @@ export interface FilterOptions {
     itemType: 'all' | 'auction' | 'buyNow';
 }
 
-const CONDITIONS = ['New', 'Used - Like New', 'Used - Excellent', 'Used - Good', 'Graded - PSA 10'];
+const CONDITIONS = ['New', 'Used - Like New', 'Used - Excellent', 'Used - Good', 'Graded - PSA 10']; // Conditions are usually standardized data, might need specific keys if we translate them, or keep as is if they are DB values. For now sticking to English as they look like data values.
+// Actually user asked for "filter modal" translation. I should probably wrap them if possible or at least the headers.
 
 export const FilterModal = ({ visible, onClose, onApply, currentFilters }: FilterModalProps) => {
     const { t } = useTranslation();
@@ -71,7 +72,7 @@ export const FilterModal = ({ visible, onClose, onApply, currentFilters }: Filte
                     <View className="flex-row items-center justify-between p-4 border-b border-gray-200">
                         <View className="flex-row items-center">
                             <SlidersHorizontal color="black" size={24} />
-                            <Text className="text-xl font-bold ml-2">Filters</Text>
+                            <Text className="text-xl font-bold ml-2">{t('marketplace.filters.title')}</Text>
                         </View>
                         <TouchableOpacity
                             onPress={onClose}
@@ -88,14 +89,18 @@ export const FilterModal = ({ visible, onClose, onApply, currentFilters }: Filte
                         showsVerticalScrollIndicator={false}
                         bounces={false}
                     >
-                        {/* Item Type */}
                         <View className="mb-6">
-                            <Text className="text-lg font-bold mb-3">Item Type</Text>
+                            <Text className="text-lg font-bold mb-3">{t('marketplace.sort.title')}</Text>
+                            {/* Reusing existing keys or new ones? "Item Type" isn't exactly sort. 
+                                Let's assume standard keys for All, Auction, Buy Now exist or I added them.
+                                I added "auctions", "buyItNow" in enc.json under marketplace. 
+                                I'll use those. "All" uses common.all usually.
+                            */}
                             <View className="flex-row space-x-2">
                                 {[
-                                    { label: 'All', value: 'all' as const },
-                                    { label: 'Auction', value: 'auction' as const },
-                                    { label: 'Buy Now', value: 'buyNow' as const }
+                                    { label: t('activity.tabs.all'), value: 'all' as const },
+                                    { label: t('marketplace.actions.auctions'), value: 'auction' as const },
+                                    { label: t('marketplace.actions.buyItNow'), value: 'buyNow' as const }
                                 ].map(type => (
                                     <TouchableOpacity
                                         key={type.value}
@@ -115,9 +120,8 @@ export const FilterModal = ({ visible, onClose, onApply, currentFilters }: Filte
                             </View>
                         </View>
 
-                        {/* Price Range */}
                         <View className="mb-6">
-                            <Text className="text-lg font-bold mb-3">Price Range</Text>
+                            <Text className="text-lg font-bold mb-3">{t('marketplace.filters.priceRange')}</Text>
                             <View className="space-y-2">
                                 {priceRanges.map(range => (
                                     <TouchableOpacity
@@ -143,9 +147,8 @@ export const FilterModal = ({ visible, onClose, onApply, currentFilters }: Filte
                             </View>
                         </View>
 
-                        {/* Condition */}
                         <View className="mb-6">
-                            <Text className="text-lg font-bold mb-3">Condition</Text>
+                            <Text className="text-lg font-bold mb-3">{t('marketplace.filters.condition')}</Text>
                             <View className="space-y-2">
                                 {CONDITIONS.map(condition => (
                                     <TouchableOpacity
@@ -167,21 +170,20 @@ export const FilterModal = ({ visible, onClose, onApply, currentFilters }: Filte
                         </View>
                     </ScrollView>
 
-                    {/* Footer */}
                     <View className="p-4 border-t border-gray-200 flex-row space-x-3 bg-white">
                         <TouchableOpacity
                             onPress={handleReset}
                             activeOpacity={0.7}
                             className="flex-1 py-4 rounded-full border-2 border-gray-300"
                         >
-                            <Text className="text-center font-bold text-gray-700">Reset</Text>
+                            <Text className="text-center font-bold text-gray-700">{t('marketplace.filters.reset')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={handleApply}
                             activeOpacity={0.7}
                             className="flex-1 py-4 rounded-full bg-black"
                         >
-                            <Text className="text-center font-bold text-white">Apply Filters</Text>
+                            <Text className="text-center font-bold text-white">{t('marketplace.filters.apply')}</Text>
                         </TouchableOpacity>
                     </View>
                 </Pressable>

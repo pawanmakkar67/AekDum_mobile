@@ -6,11 +6,14 @@ interface LiveBadgeProps {
     style?: ViewStyle;
 }
 
+import { useTranslation } from '../hooks/useTranslation';
+
 export const LiveBadge = ({ style }: LiveBadgeProps) => {
+    const { t } = useTranslation();
     return (
         <View style={[styles.container, style]}>
             <Video size={12} color="white" />
-            <Text style={styles.text}>Live</Text>
+            <Text style={styles.text}>{t('live.badge')}</Text>
         </View>
     );
 };

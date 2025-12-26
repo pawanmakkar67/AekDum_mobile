@@ -8,6 +8,7 @@ import es from '../locales/es.json';
 import fr from '../locales/fr.json';
 import de from '../locales/de.json';
 import ja from '../locales/ja.json';
+import hi from '../locales/hi.json';
 
 const RESOURCES = {
     en: { translation: en },
@@ -15,6 +16,7 @@ const RESOURCES = {
     fr: { translation: fr },
     de: { translation: de },
     ja: { translation: ja },
+    hi: { translation: hi },
 };
 
 const LANGUAGE_DETECTOR = {

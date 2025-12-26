@@ -105,7 +105,7 @@ export const SellerProfileScreen = () => {
                         className="bg-green-50 w-full py-3 rounded-xl mt-3 flex-row items-center justify-center border border-green-100"
                     >
                         <LifeBuoy color="#059669" size={18} />
-                        <Text className="text-green-700 font-bold ml-2">Help & Support</Text>
+                        <Text className="text-green-700 font-bold ml-2">{t('profile.helpSupport')}</Text>
                     </TouchableOpacity>
                 </View>
 

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { ImageOff } from 'lucide-react-native';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface AuctionCardProps {
     product: {
@@ -16,17 +18,25 @@ interface AuctionCardProps {
 }
 
 export const AuctionCard = ({ product, onPress, onBidPress, style }: AuctionCardProps) => {
+    const { t } = useTranslation();
+    const [imageError, setImageError] = useState(false);
+
     return (
         <TouchableOpacity
             onPress={onPress}
             style={[styles.container, style]}
         >
-            <View style={styles.imageContainer}>
-                <Image
-                    source={{ uri: product.image }}
-                    style={styles.image}
-                    resizeMode="cover"
-                />
+            <View style={[styles.imageContainer, imageError && styles.imageError]}>
+                {imageError ? (
+                    <ImageOff size={48} color="#9ca3af" />
+                ) : (
+                    <Image
+                        source={{ uri: product.image }}
+                        style={styles.image}
+                        resizeMode="cover"
+                        onError={() => setImageError(true)}
+                    />
+                )}
                 {product.timeLeft && (
                     <View style={styles.timerBadge}>
                         <Text style={styles.timerText}>
@@ -41,7 +51,7 @@ export const AuctionCard = ({ product, onPress, onBidPress, style }: AuctionCard
                     {product.name}
                 </Text>
 
-                <Text style={styles.label}>Current Bid</Text>
+                <Text style={styles.label}>{t('live.bidding.currentBid')}</Text>
 
                 <View style={styles.bidContainer}>
                     <Text style={styles.price}>
@@ -52,7 +62,7 @@ export const AuctionCard = ({ product, onPress, onBidPress, style }: AuctionCard
                         onPress={onBidPress}
                         style={styles.bidButton}
                     >
-                        <Text style={styles.bidButtonText}>Bid</Text>
+                        <Text style={styles.bidButtonText}>{t('live.liveOverlay.bid')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -74,6 +84,11 @@ const styles = StyleSheet.create({
         height: 160,
         width: '100%',
         position: 'relative',
+    },
+    imageError: {
+        backgroundColor: '#f3f4f6', // gray-100
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     image: {
         width: '100%',

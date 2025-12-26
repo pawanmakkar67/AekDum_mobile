@@ -6,6 +6,7 @@ import { View, StyleSheet, ActivityIndicator, TouchableOpacity, Text } from 'rea
 import { Video, ResizeMode, AVPlaybackStatus } from 'expo-av';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react-native';
 import type { VideoPlayerState, StreamQuality } from '../types/streaming.types';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface VideoPlayerProps {
     streamUrl?: string;
@@ -40,6 +41,7 @@ export function VideoPlayer({
 
     const [showControls, setShowControls] = useState(false);
     const [loading, setLoading] = useState(true);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (streamUrl) {
@@ -119,7 +121,7 @@ export function VideoPlayer({
         return (
             <View style={styles.container}>
                 <View style={styles.placeholder}>
-                    <Text style={styles.placeholderText}>No stream available</Text>
+                    <Text style={styles.placeholderText}>{t('videoPlayer.noStreamAvailable')}</Text>
                 </View>
             </View>
         );
@@ -175,7 +177,7 @@ export function VideoPlayer({
             {/* Live indicator */}
             <View style={styles.liveIndicator}>
                 <View style={styles.liveDot} />
-                <Text style={styles.liveText}>LIVE</Text>
+                <Text style={styles.liveText}>{t('live.badge')}</Text>
             </View>
         </TouchableOpacity>
     );

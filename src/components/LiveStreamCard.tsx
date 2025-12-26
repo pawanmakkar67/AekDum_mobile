@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, ImageBackground, TouchableOpacity, StyleSheet } from 'react-native';
-import { Eye, Video } from 'lucide-react-native';
+import { Eye, Video, ImageOff } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { LiveBadge } from './LiveBadge';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface LiveStreamCardProps {
     stream: {
@@ -19,52 +20,88 @@ interface LiveStreamCardProps {
 }
 
 export const LiveStreamCard = ({ stream, onPress, style }: LiveStreamCardProps) => {
+    const { t } = useTranslation();
+    const [imageError, setImageError] = useState(false);
     return (
         <TouchableOpacity onPress={onPress} style={[styles.container, style]} activeOpacity={0.9}>
             <View style={styles.card}>
-                <ImageBackground
-                    source={{ uri: stream.image }}
-                    style={styles.backgroundImage}
-                    resizeMode="cover"
-                >
-                    {/* Dark Gradient Overlay for text readability at bottom */}
-                    <LinearGradient
-                        colors={['transparent', 'rgba(0,0,0,0.8)']}
-                        style={styles.gradient}
-                    />
-
-                    {/* Top Badges */}
-                    <View style={styles.topBadges}>
-                        <LiveBadge />
-
-                        <View style={styles.viewerBadge}>
-                            <Eye size={12} color="white" />
-                            <Text style={styles.viewerText}>
-                                {stream.viewers > 1000 ? `${(stream.viewers / 1000).toFixed(1)}k` : stream.viewers}
+                {imageError ? (
+                    <View style={[styles.backgroundImage, styles.fallbackContainer]}>
+                        <ImageOff size={48} color="#4b5563" />
+                        {/* Re-using children for consistency, but maybe without gradient if background is solid color */}
+                        <View style={styles.topBadges}>
+                            <LiveBadge />
+                            <View style={styles.viewerBadge}>
+                                <Eye size={12} color="white" />
+                                <Text style={styles.viewerText}>
+                                    {stream.viewers > 1000 ? `${(stream.viewers / 1000).toFixed(1)}k` : stream.viewers}
+                                </Text>
+                            </View>
+                        </View>
+                        <View style={styles.bottomContent}>
+                            <Text style={styles.title} numberOfLines={2}>
+                                {stream.title}
                             </Text>
+                            <Text style={styles.streamer}>
+                                {stream.streamer}
+                            </Text>
+                            <TouchableOpacity
+                                onPress={onPress}
+                                style={styles.joinButton}
+                                activeOpacity={0.8}
+                            >
+                                <Text style={styles.joinButtonText}>
+                                    {t('live.joinLiveStream')}
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
+                ) : (
+                    <ImageBackground
+                        source={{ uri: stream.image }}
+                        style={styles.backgroundImage}
+                        resizeMode="cover"
+                        onError={() => setImageError(true)}
+                    >
+                        {/* Dark Gradient Overlay for text readability at bottom */}
+                        <LinearGradient
+                            colors={['transparent', 'rgba(0,0,0,0.8)']}
+                            style={styles.gradient}
+                        />
 
-                    {/* Bottom Content */}
-                    <View style={styles.bottomContent}>
-                        <Text style={styles.title} numberOfLines={2}>
-                            {stream.title}
-                        </Text>
-                        <Text style={styles.streamer}>
-                            {stream.streamer}
-                        </Text>
+                        {/* Top Badges */}
+                        <View style={styles.topBadges}>
+                            <LiveBadge />
 
-                        <TouchableOpacity
-                            onPress={onPress}
-                            style={styles.joinButton}
-                            activeOpacity={0.8}
-                        >
-                            <Text style={styles.joinButtonText}>
-                                Join Live Stream
+                            <View style={styles.viewerBadge}>
+                                <Eye size={12} color="white" />
+                                <Text style={styles.viewerText}>
+                                    {stream.viewers > 1000 ? `${(stream.viewers / 1000).toFixed(1)}k` : stream.viewers}
+                                </Text>
+                            </View>
+                        </View>
+
+                        {/* Bottom Content */}
+                        <View style={styles.bottomContent}>
+                            <Text style={styles.title} numberOfLines={2}>
+                                {stream.title}
                             </Text>
-                        </TouchableOpacity>
-                    </View>
-                </ImageBackground>
+                            <Text style={styles.streamer}>
+                                {stream.streamer}
+                            </Text>
+
+                            <TouchableOpacity
+                                onPress={onPress}
+                                style={styles.joinButton}
+                                activeOpacity={0.8}
+                            >
+                                <Text style={styles.joinButtonText}>
+                                    {t('live.joinLiveStream')}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </ImageBackground>
+                )}
             </View>
         </TouchableOpacity>
     );
@@ -85,6 +122,11 @@ const styles = StyleSheet.create({
     backgroundImage: {
         width: '100%',
         height: '100%',
+    },
+    fallbackContainer: {
+        backgroundColor: '#1f2937', // gray-800
+        alignItems: 'center',
+        justifyContent: 'center', // Center the icon, but children are absolute positioned or flex
     },
     gradient: {
         position: 'absolute',

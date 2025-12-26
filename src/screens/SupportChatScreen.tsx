@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, TouchableOpacity, FlatList, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { ArrowLeft, Phone, Video, MoreVertical, Send, Paperclip, Smile } from 'lucide-react-native';
+import { ArrowLeft, Phone, Video, MoreVertical, Send, Paperclip, Smile, Camera as CameraIconLucide } from 'lucide-react-native';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface Message {
     id: string;
@@ -18,10 +19,12 @@ export const SupportChatScreen = () => {
     const [inputText, setInputText] = useState('');
     const flatListRef = useRef<FlatList>(null);
 
+    const { t } = useTranslation();
+
     useEffect(() => {
         // Initial welcome message
         setTimeout(() => {
-            addBotMessage("Welcome to WhatNot Support! 🌟\nHow can we help you today?");
+            addBotMessage(t('support.welcome'));
         }, 500);
     }, []);
 
@@ -55,16 +58,16 @@ export const SupportChatScreen = () => {
             // Update user message to read
             setMessages(prev => prev.map(m => m.id === userMsg.id ? { ...m, status: 'read' } : m));
 
-            let reply = "Thanks for reaching out! One of our agents will be with you shortly.";
+            let reply = t('support.botReply');
 
             if (userText.includes('shipping') || userText.includes('delivery')) {
-                reply = "Orders typically ship within 2-3 business days. You can track your shipment in the Profile > Orders section.";
+                reply = t('support.orderShipReply');
             } else if (userText.includes('refund') || userText.includes('return')) {
-                reply = "For refunds, please provide your Order ID. Our policy allows returns within 7 days of delivery for damaged items.";
+                reply = t('support.refundReply');
             } else if (userText.includes('bid') || userText.includes('auction')) {
-                reply = "Having trouble with bidding? Make sure your wallet has sufficient funds. Bids placed are binding and cannot be cancelled.";
+                reply = t('support.biddingReply');
             } else if (userText.includes('hello') || userText.includes('hi')) {
-                reply = "Hello! 👋 How can I assist you with your shopping experience today?";
+                reply = t('support.helloReply');
             }
 
             addBotMessage(reply);
@@ -75,8 +78,8 @@ export const SupportChatScreen = () => {
         <View className={`flex-row ${item.isUser ? 'justify-end' : 'justify-start'} mb-3 mx-3`}>
             <View
                 className={`max-w-[80%] p-3 rounded-2xl ${item.isUser
-                        ? 'bg-[#DCF8C6] rounded-tr-none' // WhatsApp Light Green
-                        : 'bg-white rounded-tl-none'
+                    ? 'bg-[#DCF8C6] rounded-tr-none' // WhatsApp Light Green
+                    : 'bg-white rounded-tl-none'
                     } shadow-sm`}
             >
                 <Text className="text-base text-gray-800 leading-5">{item.text}</Text>
@@ -104,8 +107,8 @@ export const SupportChatScreen = () => {
                     />
                 </TouchableOpacity>
                 <View className="flex-1 ml-2">
-                    <Text className="text-white font-bold text-lg">WhatNot Support</Text>
-                    <Text className="text-white/80 text-xs">Online</Text>
+                    <Text className="text-white font-bold text-lg">{t('support.title')}</Text>
+                    <Text className="text-white/80 text-xs">{t('support.online')}</Text>
                 </View>
                 <View className="flex-row gap-5 mr-2">
                     <Video color="white" size={22} />
@@ -134,7 +137,7 @@ export const SupportChatScreen = () => {
                         <TextInput
                             value={inputText}
                             onChangeText={setInputText}
-                            placeholder="Message"
+                            placeholder={t('support.placeholder')}
                             className="flex-1 mx-2 text-base text-black"
                             multiline
                         />
@@ -142,7 +145,7 @@ export const SupportChatScreen = () => {
                             <Paperclip color="gray" size={20} />
                         </TouchableOpacity>
                         <TouchableOpacity>
-                            <CameraIcon />
+                            <CameraIconLucide color="gray" size={24} />
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity
@@ -157,6 +160,5 @@ export const SupportChatScreen = () => {
     );
 };
 
-const CameraIcon = () => (
-    <View className="w-5 h-5 rounded-full border-2 border-gray-400" />
-); // Quick mock icon if lucide Camera is missing or simply purely visual
+// Removed mock CameraIcon component as we imported it from lucide
+

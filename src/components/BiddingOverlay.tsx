@@ -88,24 +88,24 @@ export const InlineBidding: React.FC<InlineBiddingProps> = ({
                     >
                         <Clock color={timeColor} size={16} />
                         <Text style={[styles.timerText, { color: timeColor }]}>
-                            {bidData.isActive ? formatTime(bidData.timeLeft) : 'Ended'}
+                            {bidData.isActive ? formatTime(bidData.timeLeft) : t('live.bidding.ended')}
                         </Text>
                     </Animated.View>
                 </View>
 
                 {/* Current Bid - Large and Centered */}
                 <View style={styles.bidDisplay}>
-                    <Text style={styles.bidLabel}>Current Bid</Text>
+                    <Text style={styles.bidLabel}>{t('live.bidding.currentBid')}</Text>
                     <Text style={[styles.bidAmount, bidSuccess && styles.bidAmountSuccess]}>
                         {t('common.currency')}{bidData.currentBid}
                     </Text>
                     {isWinning ? (
                         <View style={styles.winningBadge}>
                             <TrendingUp color="#10B981" size={16} />
-                            <Text style={styles.winningText}>You're winning!</Text>
+                            <Text style={styles.winningText}>{t('live.bidding.winning')}</Text>
                         </View>
                     ) : bidData.totalBids > 0 && (
-                        <Text style={styles.bidsCount}>{bidData.totalBids} bids</Text>
+                        <Text style={styles.bidsCount}>{bidData.totalBids} {t('live.bidding.bids')}</Text>
                     )}
                 </View>
 
@@ -136,7 +136,7 @@ export const InlineBidding: React.FC<InlineBiddingProps> = ({
                         {/* Yellow Swipe-to-Bid (WhatNot Style) */}
                         <SwipeButton
                             onSwipeSuccess={() => handleQuickBid(selectedIncrement)}
-                            label={`Swipe to Bid ${t('common.currency')}${bidData.currentBid + selectedIncrement}`}
+                            label={`${t('live.bidding.swipeToBid')} ${t('common.currency')}${bidData.currentBid + selectedIncrement}`}
                             backgroundColor="rgba(255, 193, 7, 0.2)" // Yellow/gold background
                             thumbColor="#FFC107" // Yellow/gold thumb (WhatNot signature)
                             successColor="#10B981" // Green success
@@ -151,7 +151,7 @@ export const InlineBidding: React.FC<InlineBiddingProps> = ({
                         style={styles.historyToggle}
                     >
                         <Text style={styles.historyToggleText}>
-                            {showHistory ? 'Hide' : 'View'} Bid History
+                            {showHistory ? t('common.hide') : t('common.view')} {t('live.bidding.history')}
                         </Text>
                         {showHistory ? (
                             <ChevronUp color="rgba(255,255,255,0.6)" size={16} />
@@ -165,7 +165,7 @@ export const InlineBidding: React.FC<InlineBiddingProps> = ({
                 {showHistory && (
                     <View style={styles.historyContainer}>
                         {bidData.bidHistory.length === 0 ? (
-                            <Text style={styles.noBidsText}>No bids yet</Text>
+                            <Text style={styles.noBidsText}>{t('live.bidding.noBids')}</Text>
                         ) : (
                             bidData.bidHistory.slice(0, 3).map((bid, index) => (
                                 <View
@@ -191,7 +191,7 @@ export const InlineBidding: React.FC<InlineBiddingProps> = ({
                     </View>
                 )}
             </View>
-        </View>
+        </View >
     );
 };
 

@@ -70,9 +70,9 @@ export function CountdownDealComponent({ deal, onExpire }: CountdownDealProps) {
     };
 
     const getUrgencyText = (): string => {
-        if (timeRemaining <= 30) return '🔥 ENDING SOON!';
-        if (timeRemaining <= 300) return '⚡ HURRY UP!';
-        return '⏰ LIMITED TIME';
+        if (timeRemaining <= 30) return t('live.countdown.endingSoon');
+        if (timeRemaining <= 300) return t('live.countdown.hurryUp');
+        return t('live.countdown.limitedTime');
     };
 
     if (timeRemaining <= 0) {
@@ -101,13 +101,13 @@ export function CountdownDealComponent({ deal, onExpire }: CountdownDealProps) {
                     </Text>
                     <View style={styles.discountBadge}>
                         <Text style={styles.discountText}>
-                            {deal.discountPercentage}% OFF
+                            {deal.discountPercentage}% {t('live.countdown.off')}
                         </Text>
                     </View>
                 </View>
 
                 <View style={styles.timerRow}>
-                    <Text style={styles.timerLabel}>Ends in:</Text>
+                    <Text style={styles.timerLabel}>{t('live.countdown.endsIn')}</Text>
                     <Text style={[styles.timer, { color: getUrgencyColor() }]}>
                         {formatTime(timeRemaining)}
                     </Text>
@@ -126,7 +126,7 @@ export function CountdownDealComponent({ deal, onExpire }: CountdownDealProps) {
                         />
                     </View>
                     <Text style={styles.stockText}>
-                        {deal.quantity - deal.quantitySold} / {deal.quantity} left
+                        {deal.quantity - deal.quantitySold} / {deal.quantity} {t('live.countdown.left')}
                     </Text>
                 </View>
             </View>

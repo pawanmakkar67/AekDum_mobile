@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, Alert, StyleSheet } from 'react-native';
-import { Bell } from 'lucide-react-native';
+import { Bell, ImageOff } from 'lucide-react-native';
 
 interface FutureShoppingCardProps {
     item: {
@@ -15,6 +15,7 @@ interface FutureShoppingCardProps {
 
 export const FutureShoppingCard = ({ item, onPress }: FutureShoppingCardProps) => {
     const [isNotified, setIsNotified] = useState(false);
+    const [imageError, setImageError] = useState(false);
 
     const handleNotify = () => {
         setIsNotified(!isNotified);
@@ -28,10 +29,17 @@ export const FutureShoppingCard = ({ item, onPress }: FutureShoppingCardProps) =
             onPress={onPress}
             style={styles.container}
         >
-            <Image
-                source={{ uri: item.image }}
-                style={styles.image}
-            />
+            {imageError ? (
+                <View style={[styles.image, styles.imageError]}>
+                    <ImageOff size={24} color="#9ca3af" />
+                </View>
+            ) : (
+                <Image
+                    source={{ uri: item.image }}
+                    style={styles.image}
+                    onError={() => setImageError(true)}
+                />
+            )}
             <View style={styles.content}>
                 <Text style={styles.time}>{item.time}</Text>
                 <Text style={styles.title} numberOfLines={1}>
@@ -71,6 +79,11 @@ const styles = StyleSheet.create({
         height: 56, // h-14
         borderRadius: 28, // rounded-full
         marginRight: 12,
+    },
+    imageError: {
+        backgroundColor: '#f3f4f6', // gray-100
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     content: {
         flex: 1,

@@ -4,9 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { UserCircle, Monitor, LogIn, ShoppingBag, Share2 } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { useTranslation } from '../hooks/useTranslation';
+
 const { width } = Dimensions.get('window');
 
 export const RewardsScreen = () => {
+    const { t } = useTranslation();
     const REDEEM_ITEMS = [
         { id: '1', title: '₹100 off Kurti', cost: '500 pts', image: 'https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=500&auto=format&fit=crop&q=60' },
         { id: '2', title: 'Free Shipping', cost: '200 pts', image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&auto=format&fit=crop&q=60' },
@@ -14,30 +17,30 @@ export const RewardsScreen = () => {
         { id: '4', title: 'Free Shipping', cost: '200 pts', image: 'https://images.unsplash.com/photo-1556742046-806e8ac23cc6?w=500&auto=format&fit=crop&q=60' },
     ];
 
-    const FILTER_TABS = ['All', 'Buying', 'Selling', 'Live Bids'];
+    const FILTER_TABS = [t('activity.tabs.all'), t('activity.tabs.buying'), t('activity.tabs.selling'), t('activity.tabs.liveBids')];
 
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
             {/* Header */}
             <View style={styles.header}>
                 <UserCircle size={24} color="#374151" />
-                <Text style={styles.headerTitle}>My Rewards</Text>
+                <Text style={styles.headerTitle}>{t('live.rewards.title')}</Text>
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
 
                 {/* Hero Balance Card */}
                 <View style={styles.heroCard}>
-                    <Text style={styles.balanceLabel}>AVAILABLE BALANCE</Text>
+                    <Text style={styles.balanceLabel}>{t('live.rewards.availableBalance')}</Text>
                     <Text style={styles.balanceValue}>2,450</Text>
 
                     <View style={styles.valueBadge}>
-                        <Text style={styles.valueText}>₹850.00 Value</Text>
+                        <Text style={styles.valueText}>{t('common.currency')}850.00 {t('live.rewards.value')}</Text>
                     </View>
 
                     <View style={styles.tierInfoRow}>
-                        <Text style={styles.tierTextLeft}>Gold Tier</Text>
-                        <Text style={styles.tierTextRight}>550 pts to Platinum</Text>
+                        <Text style={styles.tierTextLeft}>{t('live.rewards.goldTier')}</Text>
+                        <Text style={styles.tierTextRight}>550 {t('live.rewards.ptsToPlatinum')}</Text>
                     </View>
 
                     <View style={styles.progressBarBg}>
@@ -51,41 +54,41 @@ export const RewardsScreen = () => {
                 </View>
 
                 {/* Ways to Earn */}
-                <Text style={styles.sectionTitle}>Ways to Earn</Text>
+                <Text style={styles.sectionTitle}>{t('live.rewards.waysToEarn')}</Text>
                 <View style={styles.earnRow}>
                     <TouchableOpacity style={styles.earnCard}>
                         <View style={[styles.earnIconBg, { backgroundColor: '#FFEDD5' }]}>
                             <Monitor size={20} color="#F97316" />
                         </View>
-                        <Text style={styles.earnTitle}>Watch Live</Text>
-                        <Text style={styles.earnPoints}>+50 Pts</Text>
+                        <Text style={styles.earnTitle}>{t('live.rewards.watchLive')}</Text>
+                        <Text style={styles.earnPoints}>+50 {t('live.rewards.pts')}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.earnCard}>
                         <View style={[styles.earnIconBg, { backgroundColor: '#DBEAFE' }]}>
                             <LogIn size={20} color="#3B82F6" />
                         </View>
-                        <Text style={styles.earnTitle}>Daily Login</Text>
-                        <Text style={styles.earnPoints}>+50 Pts</Text>
+                        <Text style={styles.earnTitle}>{t('live.rewards.dailyLogin')}</Text>
+                        <Text style={styles.earnPoints}>+50 {t('live.rewards.pts')}</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.earnCard}>
                         <View style={[styles.earnIconBg, { backgroundColor: '#DCFCE7' }]}>
                             <ShoppingBag size={20} color="#22C55E" />
                         </View>
-                        <Text style={styles.earnTitle}>Purchase</Text>
-                        <Text style={styles.earnPoints}>+50 Pts</Text>
+                        <Text style={styles.earnTitle}>{t('live.rewards.purchase')}</Text>
+                        <Text style={styles.earnPoints}>+50 {t('live.rewards.pts')}</Text>
                     </TouchableOpacity>
                 </View>
 
                 {/* Refer & Earn Banner */}
                 <View style={styles.referCard}>
                     <View style={styles.referContent}>
-                        <Text style={styles.referTitle}>Refer & Earn</Text>
-                        <Text style={styles.referDesc}>Invite friends to AekDum and get <Text style={{ color: '#c026d3', fontWeight: 'bold' }}>₹200</Text> for every join</Text>
+                        <Text style={styles.referTitle}>{t('live.rewards.referEarn')}</Text>
+                        <Text style={styles.referDesc}>{t('live.rewards.inviteFriends')} <Text style={{ color: '#c026d3', fontWeight: 'bold' }}>{t('common.currency')}200</Text> {t('live.rewards.forEveryJoin')}</Text>
                         <TouchableOpacity style={styles.inviteButton}>
                             <Share2 size={16} color="#c026d3" style={{ marginRight: 6 }} />
-                            <Text style={styles.inviteText}>Invite</Text>
+                            <Text style={styles.inviteText}>{t('live.rewards.invite')}</Text>
                         </TouchableOpacity>
                     </View>
                     <Image
@@ -96,7 +99,7 @@ export const RewardsScreen = () => {
                 </View>
 
                 {/* Redeem Points */}
-                <Text style={styles.sectionTitle}>Redeem Points</Text>
+                <Text style={styles.sectionTitle}>{t('live.rewards.redeemPoints')}</Text>
                 <View style={styles.redeemGrid}>
                     {REDEEM_ITEMS.map((item) => (
                         <View key={item.id} style={styles.redeemCard}>
@@ -105,7 +108,7 @@ export const RewardsScreen = () => {
                                 <Text style={styles.redeemTitle}>{item.title}</Text>
                                 <Text style={styles.redeemCost}>{item.cost}</Text>
                                 <TouchableOpacity style={styles.redeemButton}>
-                                    <Text style={styles.redeemButtonText}>Redeem</Text>
+                                    <Text style={styles.redeemButtonText}>{t('live.rewards.redeem')}</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
