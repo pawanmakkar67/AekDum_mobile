@@ -39,7 +39,10 @@ export const SplashScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#0A6A8B',
+        backgroundColor: '#F9FAFB',
+
+
     },
     video: {
         flex: 1,
